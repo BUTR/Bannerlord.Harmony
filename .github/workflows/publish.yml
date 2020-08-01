@@ -50,8 +50,8 @@ jobs:
     - name: Get Bannerlord.Harmony version
       id: version
       run: >-
-        $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion.Split("+");
-        echo "::set-output name=mod_version::$vers[0]"
+        $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion.Split("+")[0];
+        echo "::set-output name=mod_version::$vers"
       shell: pwsh
 
     - name: Start Selenoid
