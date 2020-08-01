@@ -2,7 +2,7 @@ name: Check if newer version is available
 
 on:
   schedule:
-    - cron:  "10 */1 * * *"
+    - cron:  "0 */1 * * *"
     
 jobs:
   check-for-newer-version:
