@@ -1,4 +1,4 @@
-name: Test and Publish
+name: Publish
 
 on:
   push:
@@ -9,7 +9,6 @@ jobs:
   publish-on-nexusmods:
     name: Publish on NexusMods
     runs-on: ubuntu-latest
-    needs: test
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
