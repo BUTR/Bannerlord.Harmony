@@ -41,7 +41,7 @@ jobs:
       if: ${{steps.status.outputs.has_newer_version}} == 'true'
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{secrets.GITHUB_TOKEN_REPO}}
+        token: ${{secrets.REPO_ACCESS_TOKEN}}
         repository: BUTR/Bannerlord.Harmony
         event-type: publish-on-nexusmods
         client-payload: '{"github": ${{ toJson(github) }}}'
