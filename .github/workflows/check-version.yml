@@ -26,7 +26,8 @@ jobs:
     - name: Run VersionChecker (Release)
       id: status
       run: >-
-        $status = dotnet run --project ./build/VersionChecker/VersionChecker.csproj --configuration Release;
+        dotnet build ./build/VersionChecker/VersionChecker.csproj --configuration Release;
+        $status = dotnet run --project ./build/VersionChecker/VersionChecker.csproj --no-build --configuration Release ;
         echo "::set-env name=has_newer_version::$status";
       env:
         DOTNET_NOLOGO: 1
