@@ -38,7 +38,7 @@ jobs:
       run:  echo "::warning ::has_newer_version=${{steps.status.outputs.has_newer_version}}"
       
     - name: Trigger publish-on-nexusmods
-      if: ${{steps.status.outputs.has_newer_version}}
+      if: ${{steps.status.outputs.has_newer_version}} == 'true'
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{secrets.GITHUB_TOKEN_REPO}}
