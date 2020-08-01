@@ -52,6 +52,7 @@ jobs:
       run: >-
         $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion;
         echo "::set-output name=mod_version::$vers"
+      shell: pwsh
 
     - name: Start Selenoid
       uses: Xotabu4/selenoid-github-action@v1
