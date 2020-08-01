@@ -1,44 +1,14 @@
-name: Publish if newer version if available
+name: Publish
 
 on:
-  push:
-    branches: 
-      - master
-  schedule:
-    - cron:  "10 */1 * * *"
-env:
-  HAS_NEWER_VERSION: false
+  repository_dispatch:
+    types: publish-on-nexusmods
+
 jobs:
-  check-for-newer-version:
-    name: Check for newer version
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@master
-      with:
-        dotnet-version: 3.1.300
-      env:
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
-        
-    - name: Run VersionChecker (Release)
-      id: status
-      run: >-
-        $status = dotnet run build/VersionChecker/VersionChecker.csproj --configuration Release;
-        echo "::set-env name=HAS_NEWER_VERSION::$status";
-      env:
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
-      shell: pwsh
-
   publish-on-nexusmods:
-    name: Publish on NexusMods
+    name: Publish on NexusMods. Requested by ${{github.event.client_payload.github.repository}}
     runs-on: ubuntu-latest
-    needs: check-for-newer-version
-    if: ${{env.HAS_NEWER_VERSION}}
+    if: github.event_name == 'repository_dispatch'
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
