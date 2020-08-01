@@ -27,14 +27,17 @@ jobs:
       id: status
       run: >-
         $status = dotnet run --project ./build/VersionChecker/VersionChecker.csproj --configuration Release;
-        echo "::set-env name=has_never_version::$status";
+        echo "::set-env name=has_newer_version::$status";
       env:
         DOTNET_NOLOGO: 1
         DOTNET_CLI_TELEMETRY_OPTOUT: 1
       shell: pwsh
       
+    - name: Log env var
+      run:  echo "::warning ::has_newer_version=${{steps.status.outputs.has_newer_version}}"
+      
     - name: Trigger publish-on-nexusmods
-      if: ${{steps.status.outputs.has_never_version}}
+      if: ${{steps.status.outputs.has_newer_version}}
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{secrets.GITHUB_TOKEN_REPO}}
