@@ -3,7 +3,7 @@ name: Verify NexusMods Cookies
 on:
   push:
     branches:
-      - v3
+      - master
   schedule:
     - cron: "0 */12 * * *"
 
