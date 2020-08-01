@@ -39,19 +39,19 @@ namespace VersionChecker
             }
             catch (Exception e)
             {
+                Console.WriteLine(1);
                 //Console.WriteLine(e);
-                Console.WriteLine("false");
                 return;
             }
 
             if (nexusModsLatestVersion == nuGetVersion)
-                Console.WriteLine("false");
+                Console.WriteLine(2);
 
             if (nexusModsLatestVersion > nuGetVersion)
-                Console.WriteLine("false");
+                Console.WriteLine(3);
 
             if (nexusModsLatestVersion < nuGetVersion)
-                Console.WriteLine("true");
+                Console.WriteLine(0);
         }
     }
 }
