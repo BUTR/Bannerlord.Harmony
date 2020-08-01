@@ -37,7 +37,7 @@ jobs:
     name: Publish on NexusMods
     runs-on: ubuntu-latest
     needs: check-for-newer-version
-    if: ${{env.HAS_BUILD_FILES}}
+    if: ${{env.HAS_NEWER_VERSION}}
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
