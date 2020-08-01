@@ -1,9 +1,6 @@
-﻿using System.IO;
-using System.Linq;
-using Newtonsoft.Json.Linq;
-using TaleWorlds.MountAndBlade;
+﻿using TaleWorlds.MountAndBlade;
 
-namespace Bannerlord.SaveSystem
+namespace Bannerlord.Harmony
 {
     public class SubModule : MBSubModuleBase { }
 }
