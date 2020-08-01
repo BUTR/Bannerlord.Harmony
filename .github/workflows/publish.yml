@@ -1,0 +1,77 @@
+name: Test and Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish-on-nexusmods:
+    name: Publish on NexusMods
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@master
+      with:
+        dotnet-version: 3.1.300
+      env:
+        DOTNET_NOLOGO: 1
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+    - name: Setup BUTR GPR
+      uses: actions/setup-dotnet@master
+      with:
+        source-url: https://nuget.pkg.github.com/BUTR/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        DOTNET_NOLOGO: 1
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+    - name: Build Bannerlord.Harmony (Release)
+      run: >-
+        dotnet build src/Bannerlord.Harmony/Bannerlord.Harmony.csproj --configuration Release -p:GameFolder="$PWD/bannerlord";
+      env:
+        DOTNET_NOLOGO: 1
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+    - name: Zip Bannerlord.Harmony
+      run: 7z a -tzip Bannerlord.Harmony.zip ./bannerlord/*
+
+    - name: Install Bannerlord.NexusmodsUploader
+      run: >-
+        dotnet tool install -g Bannerlord.NexusmodsUploader;
+      env:
+        DOTNET_NOLOGO: 1
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+    - name: Get Bannerlord.Harmony version
+      id: version
+      run: >-
+        $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion;
+        echo "::set-output name=mod_version::$vers"
+
+    - name: Start Selenoid
+      uses: Xotabu4/selenoid-github-action@v1
+
+    - name: Run NexusmodsUploader
+      run: >-
+        bannerlord_nexusmods_uploader upload -g mountandblade2bannerlord -m 2006 -n "Harmony"
+        -v "${{steps.version.outputs.mod_version}}" -l true -e true -d ""
+        -p "$PWD/Bannerlord.Harmony.zip";
+      env:
+        NEXUSMODS_COOKIES_JSON: '${{secrets.NEXUSMODS_COOKIES_JSON}}'
+        DOTNET_NOLOGO: 1
+        DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+    - name: Password protect Screenshots
+      run: 7z a -p${{secrets.SCREENSHOTS_PASSWORD}} Screenshots.7z ./Screenshots/*
+
+    - name: Upload Screenshots Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Screenshots
+        path: Screenshots.7z

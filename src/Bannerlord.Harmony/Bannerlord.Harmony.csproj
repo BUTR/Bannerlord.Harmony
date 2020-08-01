@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>Bannerlord.Harmony</RootNamespace>
+    <ModuleName>Bannerlord.Harmony</ModuleName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bannerlord.ReferenceAssemblies.Core.EarlyAccess" Version="1.4.3.235842" />
+    <PackageReference Include="Lib.Harmony" Version="*" />
+  </ItemGroup>
+
+  <Target Name="SetVersion" BeforeTargets="PrepareForBuild" DependsOnTargets="RunResolvePackageDependencies">
+    <PropertyGroup>
+      <Version Condition="'%(PackageDefinitions.Name)'=='Lib.Harmony'">%(PackageDefinitions.Version)</Version>
+    </PropertyGroup>
+  </Target>
+
+</Project>
