@@ -45,13 +45,13 @@ namespace VersionChecker
             }
 
             if (nexusModsLatestVersion == nuGetVersion)
-                Console.WriteLine("true");
+                Console.WriteLine("false");
 
             if (nexusModsLatestVersion > nuGetVersion)
                 Console.WriteLine("false");
 
             if (nexusModsLatestVersion < nuGetVersion)
-                Console.WriteLine("false");
+                Console.WriteLine("true");
         }
     }
 }
