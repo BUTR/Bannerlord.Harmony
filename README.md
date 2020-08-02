@@ -19,9 +19,9 @@ Fully automated, it check every 1 hour for a new release of Harmony.
 This module should be the highest in loading order. Any other module that requires to be set at the top (MCM, etc.) should be loaded after this mod.  
 
 ## For Modders
-The Module Id is Bannerlord.Harmony.  
+The Module Id is ``Bannerlord.Harmony``.  
 You still need to reference Harmony as a NuGet package, it is not required to include 0Harmony.dll in the final /bin output of your module.  
-You do need to add
+You do need to add this to your ``SubModule.xml``
 ```xml
 <DependedModules>
     <DependedModule Id="Bannerlord.Harmony" />
