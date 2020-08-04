@@ -4,7 +4,7 @@
     <TargetFramework>net472</TargetFramework>
     <RootNamespace>Bannerlord.Harmony</RootNamespace>
     <ModuleName>Bannerlord.Harmony</ModuleName>
-    <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">.0</GITHUB_RUN_NUMBER>
+    <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +14,7 @@
 
   <Target Name="SetVersion" BeforeTargets="PrepareForBuild" DependsOnTargets="RunResolvePackageDependencies">
     <PropertyGroup>
-      <Version Condition="'%(PackageDefinitions.Name)'=='Lib.Harmony'">%(PackageDefinitions.Version)$(GITHUB_RUN_NUMBER)</Version>
+      <Version Condition="'%(PackageDefinitions.Name)'=='Lib.Harmony'">%(PackageDefinitions.Version)ю$(GITHUB_RUN_NUMBER)</Version>
     </PropertyGroup>
   </Target>
 
