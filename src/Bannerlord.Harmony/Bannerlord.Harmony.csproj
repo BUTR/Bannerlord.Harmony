@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
@@ -14,8 +14,34 @@
 
   <Target Name="SetVersion" BeforeTargets="PrepareForBuild" DependsOnTargets="RunResolvePackageDependencies">
     <PropertyGroup>
-      <Version Condition="'%(PackageDefinitions.Name)'=='Lib.Harmony'">%(PackageDefinitions.Version).$(GITHUB_RUN_NUMBER)</Version>
+      <Version Condition="'%(PackageDefinitions.Name)'=='Lib.Harmony'">%(PackageDefinitions.Version)</Version>
     </PropertyGroup>
+
+    <SetVersion2 VersionIn="$(Version)" VersionCI="$(GITHUB_RUN_NUMBER)">
+      <Output TaskParameter="VersionOut" PropertyName="Version"/>
+    </SetVersion2>
   </Target>
+
+  <UsingTask
+    TaskName="SetVersion2"
+    TaskFactory="RoslynCodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <VersionIn ParameterType="System.String" Required="true" />
+      <VersionCI ParameterType="System.String" Required="true" />
+      <VersionOut ParameterType="System.String" Required="false" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+          var version = System.Version.Parse(VersionIn);
+          if (version.Revision == -1)
+            VersionOut = VersionIn + "." + VersionCI;
+          else
+            VersionOut = VersionIn + VersionCI;
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
 
 </Project>
