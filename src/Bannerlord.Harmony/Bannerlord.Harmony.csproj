@@ -14,7 +14,7 @@
 
   <Target Name="SetVersion" BeforeTargets="PrepareForBuild" DependsOnTargets="RunResolvePackageDependencies">
     <PropertyGroup>
-      <Version Condition="'%(PackageDefinitions.Name)'=='Lib.Harmony'">%(PackageDefinitions.Version)ю$(GITHUB_RUN_NUMBER)</Version>
+      <Version Condition="'%(PackageDefinitions.Name)'=='Lib.Harmony'">%(PackageDefinitions.Version).$(GITHUB_RUN_NUMBER)</Version>
     </PropertyGroup>
   </Target>
 
