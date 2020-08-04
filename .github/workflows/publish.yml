@@ -10,7 +10,6 @@ jobs:
   publish-on-nexusmods:
     name: Publish on NexusMods. Requested by ${{github.event.client_payload.github.repository}} - ${{github.event.client_payload.github.job}}
     runs-on: ubuntu-latest
-    if: github.event_name == 'repository_dispatch'
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
