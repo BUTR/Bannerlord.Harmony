@@ -14,17 +14,27 @@
 
 This is an unofficial distribution of the [Harmony](https://github.com/pardeike/Harmony) library maintained by the community to have an easier way to manage external library dependencies.  
 Fully automated, it checks every 1 hour for a new release of Harmony.  
-
+  
 ## Installation
-This module should be the highest in loading order. Any other module that requires to be set at the top (MCM, etc.) should be loaded after this mod.  
-
+This module should be the highest in loading order. Any other module that requires to be set at the top (Better Exception Window, Community Patch, MCM, etc.) should be loaded after this mod.  
+  
+## For Players
+This mod is intended to ensure that all mods in a player's modlist are using the latest version of Harmony to minimize conflicts.  
+  
 ## For Modders
-The Module Id is ``Bannerlord.Harmony``.  
-You still need to reference Harmony as a NuGet package, it is not required to include 0Harmony.dll in the final /bin output of your module.  
-You do need to add this to your ``SubModule.xml``
+You still need to reference Harmony as a NuGet package, it is not required to include ``0Harmony.dll`` in the final /bin output of your module.  
+You do need to add this to your ``SubModule.xml``  
 ```xml
 <DependedModules>
     <DependedModule Id="Bannerlord.Harmony" />
 </DependedModules>
 ```
 This way the game will ensure that the Harmony library is loaded before your mod.  
+  
+## Versioning  
+The Module combines the Harmony version used and the Build Id that published the Module. The Build Id is simply added to the end.  
+``2.0.2.22`` indicates that Harmony ``2.0.2.0`` is used and ``22`` is the Build Id.  
+``2.0.0.1025`` indicates that Harmony ``2.0.0.10`` is used and ``25`` is the Build Id.  
+  
+We considered using the Rimworld approach with introducing our own version system, but it won't give a clear way to detect which Harmony version the Module contains. It's easier for the user to report the version of the Module used than to check the assembly version/send it. 
+  
