@@ -2,6 +2,4 @@
 
   <Import Project="$(MSBuildThisFileDirectory)\..\build\common.props" />
 
-  <Import Project="$(MSBuildThisFileDirectory)\..\build\github-actions.props" Condition="'$(GITHUB_ACTIONS)' == 'true'" />
-
 </Project>

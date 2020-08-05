@@ -2,12 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <Version>0.0.1</Version>
     <RootNamespace>Bannerlord.Harmony</RootNamespace>
     <ModuleName>Bannerlord.Harmony</ModuleName>
     <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bannerlord.BuildResources" Version="1.0.0.1" />
     <PackageReference Include="Bannerlord.ReferenceAssemblies.Core.EarlyAccess" Version="1.4.3.235842" />
     <PackageReference Include="Lib.Harmony" Version="*" />
   </ItemGroup>
@@ -18,14 +22,11 @@
     </PropertyGroup>
 
     <SetVersion2 VersionIn="$(Version)" VersionCI="$(GITHUB_RUN_NUMBER)">
-      <Output TaskParameter="VersionOut" PropertyName="Version"/>
+      <Output TaskParameter="VersionOut" PropertyName="Version" />
     </SetVersion2>
   </Target>
 
-  <UsingTask
-    TaskName="SetVersion2"
-    TaskFactory="RoslynCodeTaskFactory"
-    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+  <UsingTask TaskName="SetVersion2" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
     <ParameterGroup>
       <VersionIn ParameterType="System.String" Required="true" />
       <VersionCI ParameterType="System.String" Required="true" />
