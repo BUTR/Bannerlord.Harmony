@@ -3,6 +3,8 @@ name: Publish
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'src/Bannerlord.Harmony/**'
   repository_dispatch:
     types: publish-on-nexusmods
 
