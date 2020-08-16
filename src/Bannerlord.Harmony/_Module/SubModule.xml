@@ -12,13 +12,13 @@
       <Name value="Bannerlord.Harmony" />
       <DLLName value="Bannerlord.Harmony.dll" />
       <SubModuleClassType value="Bannerlord.Harmony.SubModule" />
+      <!-- Assemblies does not work with e 1.4.2 -->
+      <?ignore
 	  <Assemblies>
         <Assembly value="0Harmony.dll"/>
       </Assemblies>
-      <Tags>
-        <Tag key="DedicatedServerType" value="none" />
-        <Tag key="IsNoRenderModeElement" value="false" />
-      </Tags>
+      ?>
+      <Tags/>
     </SubModule>
   </SubModules>
 </Module>
