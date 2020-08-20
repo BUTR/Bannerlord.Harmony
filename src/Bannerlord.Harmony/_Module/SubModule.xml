@@ -9,15 +9,12 @@
   <DependedModules/>
   <SubModules>
     <SubModule>
-      <Name value="Bannerlord.Harmony" />
+      <Name value="Harmony" />
       <DLLName value="Bannerlord.Harmony.dll" />
       <SubModuleClassType value="Bannerlord.Harmony.SubModule" />
-      <!-- Assemblies does not work with e 1.4.2 -->
-      <?ignore
-	  <Assemblies>
+      <Assemblies>
         <Assembly value="0Harmony.dll"/>
       </Assemblies>
-      ?>
       <Tags/>
     </SubModule>
   </SubModules>

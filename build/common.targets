@@ -1,0 +1,108 @@
+<Project>
+
+  <Target Name="AddGameVersionMetadaAssemblyAttributes" BeforeTargets="CoreGenerateAssemblyInfo">
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="$(Configuration) == 'Stable_Debug' OR $(Configuration) == 'Stable_Release'" >
+        <_Parameter1>GameVersion</_Parameter1>
+        <_Parameter2>e$(StableVersion)</_Parameter2>
+      </AssemblyAttribute>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="$(Configuration) == 'Beta_Debug' OR $(Configuration) == 'Beta_Release'" >
+        <_Parameter1>GameVersion</_Parameter1>
+        <_Parameter2>e$(BetaVersion)</_Parameter2>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="AddInternalsVisibleTo" BeforeTargets="BeforeCompile">
+    <ItemGroup Condition="'@(InternalsVisibleTo->Count())' &gt; 0">
+      <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+        <_Parameter1>%(InternalsVisibleTo.Identity)</_Parameter1>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="$(ModuleName) != ''">
+    <CreateDirectory Directory="$(GameFolder)/Modules/$(ModuleName)/bin/Win64_Shipping_Client" />
+
+    <CopyFolder FromDirectory="$(TargetDir)" ToDirectory="$(GameFolder)/Modules/$(ModuleName)/bin/Win64_Shipping_Client" Regex=".*\.dll|.*\.config$" Clean="true" />
+
+    <CopyFolder FromDirectory="$(ProjectDir)/_Module" ToDirectory="$(GameFolder)/Modules/$(ModuleName)" Regex="^.*$" Clean="false" />
+
+    <ReplaceFileText File="$(GameFolder)/Modules/$(ModuleName)/SubModule.xml" Regex="\$version\$" ReplacementText="$(Version)" />
+  </Target>
+
+  <UsingTask
+    TaskName="CreateDirectory"
+    TaskFactory="RoslynCodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Directory ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            var directory = new DirectoryInfo(Directory);
+            if (!directory.Exists)
+                directory.Create();
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <UsingTask
+    TaskName="CopyFolder"
+    TaskFactory="RoslynCodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <FromDirectory ParameterType="System.String" Required="true" />
+      <ToDirectory ParameterType="System.String" Required="true" />
+      <Regex ParameterType="System.String" Required="true" />
+      <Clean ParameterType="System.Boolean" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            void CopyTo(System.IO.DirectoryInfo from, System.IO.DirectoryInfo to)
+            {
+                if (!to.Exists)
+                  to.Create();
+            
+                if (Clean)
+                {
+                    foreach (var fileInfo in to.GetFiles().Where(x => System.Text.RegularExpressions.Regex.IsMatch(x.Name, Regex)))
+                        fileInfo.Delete();
+                }
+        
+                foreach (var fileInfo in from.GetFiles().Where(x => System.Text.RegularExpressions.Regex.IsMatch(x.Name, Regex)))
+                    fileInfo.CopyTo(System.IO.Path.Combine(to.FullName, fileInfo.Name), true);
+                foreach (var directoryInfo in from.GetDirectories())
+                    CopyTo(directoryInfo, to.CreateSubdirectory(directoryInfo.Name));
+            }
+
+            CopyTo(new System.IO.DirectoryInfo(FromDirectory), new System.IO.DirectoryInfo(ToDirectory));
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <UsingTask
+    TaskName="ReplaceFileText"
+    TaskFactory="RoslynCodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <File ParameterType="System.String" Required="true" />
+      <Regex ParameterType="System.String" Required="true" />
+      <ReplacementText ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+          System.IO.File.WriteAllText(
+            File,
+            System.Text.RegularExpressions.Regex.Replace(System.IO.File.ReadAllText(File), Regex, ReplacementText));
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+</Project>
