@@ -4,7 +4,7 @@
     <TargetFramework>net472</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>0.0.1</Version>
+    <Version>0.0.1.0</Version>
     <RootNamespace>Bannerlord.Harmony</RootNamespace>
     <ModuleName>Bannerlord.Harmony</ModuleName>
     <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
