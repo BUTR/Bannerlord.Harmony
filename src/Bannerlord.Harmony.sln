@@ -20,7 +20,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{9DDD383F-8BE9-43A7-8353-A603EA47DF03}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\check-version.yml = ..\.github\workflows\check-version.yml
-		..\.github\workflows\nexusmods-cookies.yml = ..\.github\workflows\nexusmods-cookies.yml
 		..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
 	EndProjectSection
 EndProject
