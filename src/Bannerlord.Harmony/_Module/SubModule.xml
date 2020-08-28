@@ -1,22 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
   <Name value="Harmony" />
   <Id value="Bannerlord.Harmony" />
-  <Version value="v$version$"/>
-  <Official value="false"/>
-  <DefaultModule value="false"/>
-  <SingleplayerModule value="true"/>
-  <MultiplayerModule value="false"/>
-  <DependedModules/>
+  <Version value="v$version$" />
+  <Official value="false" />
+  <DefaultModule value="false" />
+  <SingleplayerModule value="true" />
+  <MultiplayerModule value="false" />
+  <DependedModules />
   <SubModules>
     <SubModule>
       <Name value="Harmony" />
       <DLLName value="Bannerlord.Harmony.dll" />
       <SubModuleClassType value="Bannerlord.Harmony.SubModule" />
       <Assemblies>
-        <Assembly value="0Harmony.dll"/>
+        <Assembly value="0Harmony.dll" />
       </Assemblies>
-      <Tags/>
+      <Tags />
     </SubModule>
   </SubModules>
 </Module>
