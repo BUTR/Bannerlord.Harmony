@@ -2,10 +2,11 @@
 <Module>
   <Name value="Harmony" />
   <Id value="Bannerlord.Harmony" />
-  <Version value="v$version$" />
-  <SingleplayerModule value="true" />
-  <MultiplayerModule value="false" />
-  <Official value="false" />
+  <Version value="v$version$"/>
+  <Official value="false"/>
+  <DefaultModule value="false"/>
+  <SingleplayerModule value="true"/>
+  <MultiplayerModule value="false"/>
   <DependedModules/>
   <SubModules>
     <SubModule>
