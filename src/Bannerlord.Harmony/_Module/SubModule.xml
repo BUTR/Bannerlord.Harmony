@@ -8,6 +8,15 @@
   <SingleplayerModule value="true" />
   <MultiplayerModule value="false" />
   <DependedModules />
+  <!-- Prototype -->
+  <DependedModuleMetadatas>
+    <DependedModuleMetadata id="Native" order="LoadAfterThis" optional="true" />
+    <DependedModuleMetadata id="SandBoxCore" order="LoadAfterThis" optional="true" />
+    <DependedModuleMetadata id="Sandbox" order="LoadAfterThis" optional="true" />
+    <DependedModuleMetadata id="StoryMode" order="LoadAfterThis" optional="true" />
+    <DependedModuleMetadata id="CustomBattle" order="LoadAfterThis" optional="true" />
+  </DependedModuleMetadatas>
+  <!-- Prototype -->
   <SubModules>
     <SubModule>
       <Name value="Harmony" />
