@@ -1,3 +1,4 @@
+<!--EXTERNAL_PROPERTIES: GITHUB_ACTIONS;DISABLE_GITHUB_ACTIONS;NuGetPackageRoot;TargetFramework-->
 <Project>
 
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(DISABLE_GITHUB_ACTIONS)' == ''">
