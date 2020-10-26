@@ -1,16 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <Version>0.0.1.0</Version>
-    <RootNamespace>Bannerlord.Harmony</RootNamespace>
     <ModuleName>Bannerlord.Harmony</ModuleName>
     <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bannerlord.BuildResources" Version="1.0.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Bannerlord.ReferenceAssemblies.Core.EarlyAccess" Version="1.1.0.*" PrivateAssets="All" />
     <PackageReference Include="Lib.Harmony" Version="*" />
   </ItemGroup>

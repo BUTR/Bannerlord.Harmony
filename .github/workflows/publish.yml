@@ -9,10 +9,7 @@ on:
     types: publish-on-nexusmods
 
 jobs:
-###########################
-#          NEXUS          #
-###########################
-  build-for-nexusmods:
+  build-module:
     name: Build for NexusMods
     runs-on: ubuntu-latest
     steps:
@@ -42,6 +39,7 @@ jobs:
       env:
         DOTNET_NOLOGO: 1
         DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      shell: pwsh
 
     - name: Upload Bannerlord folder
       uses: actions/upload-artifact@v2
@@ -49,9 +47,12 @@ jobs:
         name: bannerlord
         path: ./bannerlord/
 
+###########################
+#          NEXUS          #
+###########################
   publish-on-nexusmods:
     name: Publish on NexusMods
-    needs: ["build-for-nexusmods"]
+    needs: ["build-module"]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
@@ -82,6 +83,7 @@ jobs:
 
     - name: Zip Bannerlord.Harmony
       run: 7z a -tzip Bannerlord.Harmony.zip ./bannerlord/*
+      shell: pwsh
 
     - name: Install Bannerlord.NexusmodsUploader
       run: >-
@@ -89,6 +91,7 @@ jobs:
       env:
         DOTNET_NOLOGO: 1
         DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      shell: pwsh
 
     - name: Get Bannerlord.Harmony version
       id: version
@@ -109,9 +112,11 @@ jobs:
         NEXUSMODS_COOKIES_JSON: '${{secrets.NEXUSMODS_COOKIES_JSON}}'
         DOTNET_NOLOGO: 1
         DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      shell: pwsh
 
     - name: Password protect Screenshots
       run: 7z a -p${{secrets.SCREENSHOTS_PASSWORD}} Screenshots.7z ./Screenshots/*
+      shell: pwsh
 
     - name: Upload Screenshots Artifact
       uses: actions/upload-artifact@v2
@@ -125,7 +130,7 @@ jobs:
   publish-on-github:
     name: Publish on GitHub
     runs-on: ubuntu-latest
-    needs: ["build-for-nexusmods"]
+    needs: ["build-module"]
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -155,6 +160,7 @@ jobs:
 
     - name: Zip Bannerlord.Harmony
       run: 7z a -tzip Bannerlord.Harmony.zip ./bannerlord/*
+      shell: pwsh
 
     - name: Install Bannerlord.NexusmodsUploader
       run: >-
@@ -162,6 +168,7 @@ jobs:
       env:
         DOTNET_NOLOGO: 1
         DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      shell: pwsh
 
     - name: Get Bannerlord.Harmony version
       id: version

@@ -3,7 +3,7 @@ name: Check if newer version is available
 on:
   schedule:
     - cron:  "0 */1 * * *"
-    
+
 jobs:
   check-for-newer-version:
     name: Check for newer version
@@ -19,7 +19,7 @@ jobs:
       env:
         DOTNET_NOLOGO: 1
         DOTNET_CLI_TELEMETRY_OPTOUT: 1
-        
+
     - name: Run VersionChecker (Release)
       id: status
       run: >-
@@ -33,6 +33,7 @@ jobs:
 
     - name: Log has_newer_version
       run:  echo "::warning ::has_newer_version=${{steps.status.outputs.has_newer_version}}"
+      shell: pwsh
 
     - name: Trigger publish-on-nexusmods
       if: contains(steps.status.outputs.newer_version_status, '0')
