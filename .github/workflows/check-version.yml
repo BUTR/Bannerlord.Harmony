@@ -1,6 +1,10 @@
 name: Check if newer version is available
 
 on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/check-version.yml'
   schedule:
     - cron:  "0 */1 * * *"
 
