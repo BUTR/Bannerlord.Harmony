@@ -32,11 +32,11 @@ jobs:
       shell: pwsh
 
     - name: Log has_newer_version
-      run:  echo "::warning ::has_newer_version=${{steps.status.outputs.has_newer_version}}"
+      run:  echo "::warning ::newer_version_status=${{steps.status.outputs.newer_version_status}}"
       shell: pwsh
 
     - name: Trigger publish-on-nexusmods
-      if: contains(steps.status.outputs.newer_version_status, '0')
+      if: steps.status.outputs.newer_version_status == '0'
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{secrets.REPO_ACCESS_TOKEN}}
