@@ -2,6 +2,7 @@
 <Project>
 
   <PropertyGroup>
+    <BuildResourcesVersion>1.0.0.20</BuildResourcesVersion>
     <GameVersion>1.0.0</GameVersion>
 
     <!--Bannerlord's Root Folder. Leave empty if you want it to be tried to be autoresolved.-->
@@ -9,5 +10,31 @@
     <GameFolder Condition="$(Configuration) == 'Beta_Debug' OR $(Configuration) == 'Beta_Release'">$(BANNERLORD_BETA_DIR)</GameFolder>
     <GameFolder Condition="$(BANNERLORD_STABLE_DIR) == '' AND $(BANNERLORD_BETA_DIR) == ''">$(BANNERLORD_GAME_DIR)</GameFolder>
   </PropertyGroup>
+
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(DISABLE_GITHUB_ACTIONS)' == ''">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(DISABLE_GITHUB_ACTIONS)' == ''">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <!-- Workaround for https://github.com/NuGet/Home/issues/9431 -->
+  <ItemGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(DISABLE_GITHUB_ACTIONS)' == ''">
+    <SourceRoot Include="$(NuGetPackageRoot)" Condition="'$(NuGetPackageRoot)' != ''" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(DISABLE_GITHUB_ACTIONS)' == '' AND $(TargetFramework) == 'net472' AND '$(OS)' != 'Windows_NT'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>
