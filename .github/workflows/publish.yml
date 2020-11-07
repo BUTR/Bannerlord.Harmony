@@ -8,6 +8,14 @@ on:
   repository_dispatch:
     types: publish-on-nexusmods
 
+env:
+  # Disable the .NET logo in the console output.
+  DOTNET_NOLOGO: true
+  # Disable the .NET first time experience to skip caching NuGet packages and speed up the build.
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  # Disable sending .NET CLI telemetry to Microsoft.
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
 jobs:
   build-module:
     name: Build for NexusMods
@@ -20,9 +28,6 @@ jobs:
       uses: actions/setup-dotnet@master
       with:
         dotnet-version: 3.1.x
-      env:
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
     - name: Setup BUTR GPR
       uses: actions/setup-dotnet@master
@@ -30,15 +35,10 @@ jobs:
         source-url: https://nuget.pkg.github.com/BUTR/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
     - name: Build Bannerlord.Harmony (Release)
       run: >-
         dotnet build src/Bannerlord.Harmony/Bannerlord.Harmony.csproj --configuration Release -p:GameFolder="$PWD/bannerlord";
-      env:
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
       shell: pwsh
 
     - name: Upload Bannerlord folder
@@ -62,9 +62,6 @@ jobs:
       uses: actions/setup-dotnet@master
       with:
         dotnet-version: 3.1.x
-      env:
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
     - name: Setup BUTR GPR
       uses: actions/setup-dotnet@master
@@ -72,8 +69,6 @@ jobs:
         source-url: https://nuget.pkg.github.com/BUTR/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
     - name: Download bannerlord folder
       uses: actions/download-artifact@v2
@@ -88,9 +83,6 @@ jobs:
     - name: Install Bannerlord.NexusmodsUploader
       run: >-
         dotnet tool install -g Bannerlord.NexusmodsUploader;
-      env:
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
       shell: pwsh
 
     - name: Get Bannerlord.Harmony version
@@ -110,8 +102,6 @@ jobs:
         -p "$PWD/Bannerlord.Harmony.zip";
       env:
         NEXUSMODS_COOKIES_JSON: '${{secrets.NEXUSMODS_COOKIES_JSON}}'
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
       shell: pwsh
 
     - name: Password protect Screenshots
@@ -139,9 +129,6 @@ jobs:
       uses: actions/setup-dotnet@master
       with:
         dotnet-version: 3.1.x
-      env:
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
     - name: Setup BUTR GPR
       uses: actions/setup-dotnet@master
@@ -149,8 +136,6 @@ jobs:
         source-url: https://nuget.pkg.github.com/BUTR/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
     - name: Download bannerlord folder
       uses: actions/download-artifact@v2
@@ -165,9 +150,6 @@ jobs:
     - name: Install Bannerlord.NexusmodsUploader
       run: >-
         dotnet tool install -g Bannerlord.NexusmodsUploader;
-      env:
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
       shell: pwsh
 
     - name: Get Bannerlord.Harmony version
