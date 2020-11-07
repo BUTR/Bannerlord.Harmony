@@ -8,6 +8,14 @@ on:
   schedule:
     - cron:  "0 */1 * * *"
 
+env:
+  # Disable the .NET logo in the console output.
+  DOTNET_NOLOGO: true
+  # Disable the .NET first time experience to skip caching NuGet packages and speed up the build.
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  # Disable sending .NET CLI telemetry to Microsoft.
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
 jobs:
   check-for-newer-version:
     name: Check for newer version
@@ -19,10 +27,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@master
       with:
-        dotnet-version: 3.1.300
-      env:
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
+        dotnet-version: 3.1.x
 
     - name: Run VersionChecker (Release)
       id: status
@@ -30,9 +35,6 @@ jobs:
         dotnet build ./build/VersionChecker/VersionChecker.csproj --configuration Release;
         $status = dotnet run --project ./build/VersionChecker/VersionChecker.csproj --no-build --configuration Release ;
         echo "::set-env name=newer_version_status::$status";
-      env:
-        DOTNET_NOLOGO: 1
-        DOTNET_CLI_TELEMETRY_OPTOUT: 1
       shell: pwsh
 
     - name: Log has_newer_version
