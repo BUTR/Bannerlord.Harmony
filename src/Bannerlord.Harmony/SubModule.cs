@@ -117,7 +117,6 @@ This is not recommended. Expect issues!";
                 if (sb.Length > 0)
                 {
                     Task.Run(() => MessageBox.Show(sb.ToString(), new TextObject(SWarningTitle).ToString(), MessageBoxButtons.OK));
-                    throw new Exception();
                 }
             }
             else

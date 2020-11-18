@@ -6,6 +6,7 @@
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <Version>0.0.1.0</Version>
+    <Deterministic>true</Deterministic>
     <ModuleName>Bannerlord.Harmony</ModuleName>
     <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
   </PropertyGroup>
