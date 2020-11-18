@@ -2,7 +2,7 @@
 <Project>
 
   <PropertyGroup>
-    <BuildResourcesVersion>1.0.0.20</BuildResourcesVersion>
+    <BuildResourcesVersion>1.0.0.23</BuildResourcesVersion>
     <GameVersion>1.0.0</GameVersion>
 
     <!--Bannerlord's Root Folder. Leave empty if you want it to be tried to be autoresolved.-->

@@ -23,9 +23,6 @@
       <Name value="Harmony" />
       <DLLName value="Bannerlord.Harmony.dll" />
       <SubModuleClassType value="Bannerlord.Harmony.SubModule" />
-      <Assemblies>
-        <Assembly value="0Harmony.dll" />
-      </Assemblies>
       <Tags />
     </SubModule>
   </SubModules>
