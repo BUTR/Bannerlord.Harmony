@@ -38,6 +38,7 @@ Expected {P_VERSION}, but got {E_VERSION}!
 This is not recommended. Expect issues!";
         private const string SErrorHarmonyLoadedFromAnotherPlace =
 @"{=ASjx7sqkJs}0Harmony.dll was loaded from another location!
+It may be caused by a custom launcher!
 This is not recommended. Expect issues!";
 
         private static readonly HarmonyRef Harmony = new HarmonyRef("Bannerlord.ButterLib.GauntletUISubModule");
