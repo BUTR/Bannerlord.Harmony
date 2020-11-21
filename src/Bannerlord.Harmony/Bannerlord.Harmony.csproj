@@ -1,17 +1,21 @@
-﻿<!--EXTERNAL_PROPERTIES: BuildResourcesVersion-->
+﻿<!--EXTERNAL_PROPERTIES: GameVersion;HarmonyVersion;BuildResourcesVersion-->
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>0.0.1.0</Version>
-    <Deterministic>true</Deterministic>
 
     <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
 
     <ModuleName>$(MSBuildProjectName)</ModuleName>
   </PropertyGroup>
+
+  <!--Windows Forms-->
+  <ItemGroup>
+    <_SDKImplicitReference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <!--Windows Forms-->
 
   <ItemGroup>
     <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)">
@@ -21,12 +25,6 @@
     <PackageReference Include="Bannerlord.ReferenceAssemblies.Core.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
     <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" />
   </ItemGroup>
-
-  <!--Windows Forms-->
-  <ItemGroup>
-    <_SDKImplicitReference Include="System.Windows.Forms" />
-  </ItemGroup>
-  <!--Windows Forms-->
 
   <Target Name="SetVersion" BeforeTargets="PrepareForBuild" DependsOnTargets="RunResolvePackageDependencies">
     <PropertyGroup>
