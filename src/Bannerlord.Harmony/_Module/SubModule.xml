@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
   <Name value="Harmony" />
-  <Id value="Bannerlord.Harmony" />
+  <Id value="$modulename$" />
   <Version value="v$version$" />
   <Official value="false" />
   <DefaultModule value="false" />
@@ -21,8 +21,8 @@
   <SubModules>
     <SubModule>
       <Name value="Harmony" />
-      <DLLName value="Bannerlord.Harmony.dll" />
-      <SubModuleClassType value="Bannerlord.Harmony.SubModule" />
+      <DLLName value="$modulename$.dll" />
+      <SubModuleClassType value="$modulename$.SubModule" />
       <Tags />
     </SubModule>
   </SubModules>
