@@ -7,9 +7,13 @@
     <Nullable>enable</Nullable>
 
     <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
+  </PropertyGroup>
 
+  <!--Module Creation-->
+  <PropertyGroup>
     <ModuleName>$(MSBuildProjectName)</ModuleName>
   </PropertyGroup>
+  <!--Module Creation-->
 
   <!--Windows Forms-->
   <ItemGroup>
