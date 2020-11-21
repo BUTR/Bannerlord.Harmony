@@ -25,9 +25,9 @@ namespace Bannerlord.Harmony
         private const uint COLOR_ORANGE = 0xFF8000;
 
         private const string SWarningTitle =
-"{=qZXqV8GzUH}Warning from Bannerlord.Harmony!";
+@"{=qZXqV8GzUH}Warning from Bannerlord.Harmony!";
         private const string SErrorHarmonyNotFound =
-"{=EEVJa5azpB}Bannerlord.Harmony module was not found!";
+@"{=EEVJa5azpB}Bannerlord.Harmony module was not found!";
         private const string SErrorHarmonyNotFirst =
  @"{=NxkNTUUV32}Bannerlord.Harmony is not first in loading order!
 This is not recommended. Expect issues!";
@@ -64,7 +64,9 @@ This is not recommended. Expect issues!";
         {
             if (__instance.GetType().Name.Contains("GauntletUISubModule"))
             {
-                CheckHarmonyLoadOrder();
+                // OnBeforeInitialModuleScreenSetAsRoot will be called before the Native modules
+                // will be able to initialize the chat system we use to log info.
+                CheckLoadOrder();
                 Harmony.Unpatch(
                     AccessTools.DeclaredMethod(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
                     HarmonyPatchType.All,
@@ -72,7 +74,7 @@ This is not recommended. Expect issues!";
             }
         }
 
-        private static void CheckHarmonyLoadOrder()
+        private static void CheckLoadOrder()
         {
             var loadedModules = GetLoadedModules().ToArray();
             var harmonyModule = loadedModules.SingleOrDefault(x => x.Id == "Bannerlord.Harmony");
@@ -80,9 +82,7 @@ This is not recommended. Expect issues!";
             if (harmonyModuleIndex == -1)
                 InformationManager.DisplayMessage(new InformationMessage(new TextObject(SErrorHarmonyNotFound).ToString(), Color.FromUint(COLOR_RED)));
             if (harmonyModuleIndex != 0)
-            {
                 InformationManager.DisplayMessage(new InformationMessage(new TextObject(SErrorHarmonyNotFirst).ToString(), Color.FromUint(COLOR_RED)));
-            }
         }
 
         private static void LoadHarmony()
