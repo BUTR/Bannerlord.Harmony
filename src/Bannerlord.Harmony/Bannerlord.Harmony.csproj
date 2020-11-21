@@ -7,8 +7,10 @@
     <Nullable>enable</Nullable>
     <Version>0.0.1.0</Version>
     <Deterministic>true</Deterministic>
-    <ModuleName>Bannerlord.Harmony</ModuleName>
-    <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
+
+    <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
+
+    <ModuleName>$(MSBuildProjectName)</ModuleName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,8 +18,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.Core.EarlyAccess" Version="1.1.0.*" PrivateAssets="All" />
-    <PackageReference Include="Lib.Harmony" Version="2.0.4" />
+    <PackageReference Include="Bannerlord.ReferenceAssemblies.Core.EarlyAccess" Version="$(GameVersion).*" PrivateAssets="All" />
+    <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" />
   </ItemGroup>
 
   <!--Windows Forms-->

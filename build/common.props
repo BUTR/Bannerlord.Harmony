@@ -2,8 +2,16 @@
 <Project>
 
   <PropertyGroup>
+    <!--Module Version-->
+    <Version>0.0.1.0</Version>
+    <!--Harmony Version-->
+    <HarmonyVersion>2.0.2</HarmonyVersion>
+    <!--BuildResources Version-->
     <BuildResourcesVersion>1.0.0.23</BuildResourcesVersion>
-    <GameVersion>1.0.0</GameVersion>
+
+    <GameVersion>1.1.0</GameVersion>
+
+    <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
 
     <!--Bannerlord's Root Folder. Leave empty if you want it to be tried to be autoresolved.-->
     <GameFolder Condition="$(Configuration) == 'Stable_Debug' OR $(Configuration) == 'Stable_Release'">$(BANNERLORD_STABLE_DIR)</GameFolder>
