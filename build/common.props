@@ -21,6 +21,17 @@
     <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <!--Windows-->
+    <!--Get from Registry (not working with dotnet right now)-->
+    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Windows_NT'">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261550@InstallLocation)</GameFolder>
+    <!--Set a default value if registry value is missing-->
+    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Windows_NT'">C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</GameFolder>
+    <!--Unix-->
+    <!--Set a default value if registry value is missing-->
+    <GameFolder Condition="!Exists($(GameFolder)) AND $(OS) == 'Unix'">~/.steam/root/steamapps/common/Mount &amp; Blade II Bannerlord</GameFolder>
+  </PropertyGroup>
+
 
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' AND '$(DISABLE_GITHUB_ACTIONS)' == ''">
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
