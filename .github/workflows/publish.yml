@@ -146,7 +146,8 @@ jobs:
 
     - name: Zip Bannerlord.Harmony
       run: 7z a -tzip Bannerlord.Harmony.zip ./bannerlord/*
-      shell: pwsh
+      #shell: pwsh
+      # pwsh casues it to include the root folder
 
     - name: Install Bannerlord.NexusmodsUploader
       run: >-
