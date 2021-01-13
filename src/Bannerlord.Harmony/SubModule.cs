@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using Bannerlord.BUTRLoader.ModuleInfoExtended;
+
+using HarmonyLib;
 
 using System;
 using System.Collections.Generic;
@@ -76,7 +78,7 @@ This is not recommended. Expect issues!";
 
         private static void CheckLoadOrder()
         {
-            var loadedModules = GetLoadedModules().ToArray();
+            var loadedModules = GetLoadedModules().ToList();
             var harmonyModule = loadedModules.SingleOrDefault(x => x.Id == "Bannerlord.Harmony");
             var harmonyModuleIndex = harmonyModule is not null ? loadedModules.IndexOf(harmonyModule) : -1;
             if (harmonyModuleIndex == -1)
@@ -108,11 +110,10 @@ This is not recommended. Expect issues!";
                 if (providedHarmony.Version != existingHarmonyName.Version)
                 {
                     if (sb.Length != 0) sb.AppendLine();
-                    sb.AppendLine(new TextObject(SErrorHarmonyWrongVersion, new Dictionary<string, TextObject>()
-                    {
-                        {"P_VERSION", new TextObject(providedHarmony.Version.ToString())},
-                        {"E_VERSION", new TextObject(existingHarmonyName.Version.ToString())}
-                    }).ToString());
+                    var textObject = new TextObject(SErrorHarmonyWrongVersion);
+                    textObject.SetTextVariable("P_VERSION", new TextObject(providedHarmony.Version.ToString()));
+                    textObject.SetTextVariable("E_VERSION", new TextObject(existingHarmonyName.Version.ToString()));
+                    sb.AppendLine(textObject.ToString());
                 }
 
                 if (sb.Length > 0)
@@ -127,12 +128,12 @@ This is not recommended. Expect issues!";
             }
         }
 
-        private static IEnumerable<ModuleInfo> GetLoadedModules()
+        private static IEnumerable<ModuleInfo2> GetLoadedModules()
         {
             var modulesNames = Utilities.GetModulesNames();
             for (var i = 0; i < modulesNames.Length; i++)
             {
-                var moduleInfo = new ModuleInfo();
+                var moduleInfo = new ModuleInfo2();
                 moduleInfo.Load(modulesNames[i]);
                 yield return moduleInfo;
             }

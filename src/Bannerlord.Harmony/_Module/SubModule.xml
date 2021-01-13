@@ -23,7 +23,11 @@
       <Name value="Harmony" />
       <DLLName value="$modulename$.dll" />
       <SubModuleClassType value="$modulename$.SubModule" />
-      <Tags />
+      <!-- For compatibility with Legacy versions-->
+      <Tags>
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
     </SubModule>
   </SubModules>
 </Module>

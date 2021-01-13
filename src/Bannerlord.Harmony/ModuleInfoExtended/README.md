@@ -1,0 +1,1 @@
+﻿This code should be reused as package similar to `Nullable` that we use.
