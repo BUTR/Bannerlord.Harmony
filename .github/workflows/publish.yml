@@ -28,7 +28,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@master
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: 5.0.x
 
     - name: Setup BUTR GPR
       uses: actions/setup-dotnet@master
