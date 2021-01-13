@@ -54,6 +54,7 @@ jobs:
     name: Publish on NexusMods
     needs: ["build-module"]
     runs-on: ubuntu-latest
+    if: ${{false}}
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
