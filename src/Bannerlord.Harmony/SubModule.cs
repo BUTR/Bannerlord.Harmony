@@ -78,7 +78,7 @@ This is not recommended. Expect issues!";
 
         private static void CheckLoadOrder()
         {
-            var loadedModules = GetLoadedModules().ToList();
+            var loadedModules = ModuleUtils.GetLoadedModules().ToList();
             var harmonyModule = loadedModules.SingleOrDefault(x => x.Id == "Bannerlord.Harmony");
             var harmonyModuleIndex = harmonyModule is not null ? loadedModules.IndexOf(harmonyModule) : -1;
             if (harmonyModuleIndex == -1)
@@ -125,17 +125,6 @@ This is not recommended. Expect issues!";
             {
                 // We shouldn't hit this place.
                 AppDomain.CurrentDomain.Load(providedHarmony);
-            }
-        }
-
-        private static IEnumerable<ModuleInfo2> GetLoadedModules()
-        {
-            var modulesNames = Utilities.GetModulesNames();
-            for (var i = 0; i < modulesNames.Length; i++)
-            {
-                var moduleInfo = new ModuleInfo2();
-                moduleInfo.Load(modulesNames[i]);
-                yield return moduleInfo;
             }
         }
     }
