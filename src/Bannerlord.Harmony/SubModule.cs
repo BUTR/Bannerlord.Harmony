@@ -111,8 +111,8 @@ This is not recommended. Expect issues!";
                 {
                     if (sb.Length != 0) sb.AppendLine();
                     var textObject = TextObjectUtils.Create(SErrorHarmonyWrongVersion);
-                    textObject?.SetTextVariable("P_VERSION", TextObjectUtils.Create(providedHarmony.Version.ToString()));
-                    textObject?.SetTextVariable("E_VERSION", TextObjectUtils.Create(existingHarmonyName.Version.ToString()));
+                    textObject?.SetTextVariable2("P_VERSION", TextObjectUtils.Create(providedHarmony.Version.ToString()));
+                    textObject?.SetTextVariable2("E_VERSION", TextObjectUtils.Create(existingHarmonyName.Version.ToString()));
                     sb.AppendLine(textObject?.ToString() ?? "ERROR");
                 }
 
