@@ -26,7 +26,7 @@ You still need to reference Harmony as a NuGet package, it is not required to in
 You do need to add this to your ``SubModule.xml``  
 ```xml
 <DependedModules>
-    <DependedModule Id="Bannerlord.Harmony" />
+    <DependedModule Id="Bannerlord.Harmony" DependentVersion="v2.0.2" />
 </DependedModules>
 ```
 This way the game will ensure that the Harmony library is loaded before your mod.  
