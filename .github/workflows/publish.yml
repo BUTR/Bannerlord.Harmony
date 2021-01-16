@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '.github/workflows/publish.yml'
+      - 'build/**'
       - 'src/Bannerlord.Harmony/**'
   repository_dispatch:
     types: publish-on-nexusmods
