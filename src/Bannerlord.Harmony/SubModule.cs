@@ -1,10 +1,8 @@
 ﻿using Bannerlord.BUTR.Shared.Helpers;
-using Bannerlord.BUTR.Shared.ModuleInfoExtended;
 
 using HarmonyLib;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -78,13 +76,13 @@ This is not recommended. Expect issues!";
 
         private static void CheckLoadOrder()
         {
-            var loadedModules = ModuleUtils.GetLoadedModules().ToList();
+            var loadedModules = ModuleInfoHelper.GetLoadedModules().ToList();
             var harmonyModule = loadedModules.SingleOrDefault(x => x.Id == "Bannerlord.Harmony");
             var harmonyModuleIndex = harmonyModule is not null ? loadedModules.IndexOf(harmonyModule) : -1;
             if (harmonyModuleIndex == -1)
-                InformationManager.DisplayMessage(new InformationMessage(TextObjectUtils.Create(SErrorHarmonyNotFound)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
+                InformationManager.DisplayMessage(new InformationMessage(TextObjectHelper.Create(SErrorHarmonyNotFound)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
             if (harmonyModuleIndex != 0)
-                InformationManager.DisplayMessage(new InformationMessage(TextObjectUtils.Create(SErrorHarmonyNotFirst)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
+                InformationManager.DisplayMessage(new InformationMessage(TextObjectHelper.Create(SErrorHarmonyNotFirst)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
         }
 
         private static void LoadHarmony()
@@ -104,21 +102,21 @@ This is not recommended. Expect issues!";
                 if (string.IsNullOrEmpty(existingHarmony.Location) || Path.GetFullPath(providedHarmonyLocation) != Path.GetFullPath(existingHarmony.Location))
                 {
                     if (sb.Length != 0) sb.AppendLine();
-                    sb.AppendLine(TextObjectUtils.Create(SErrorHarmonyLoadedFromAnotherPlace)?.ToString() ?? "ERROR");
+                    sb.AppendLine(TextObjectHelper.Create(SErrorHarmonyLoadedFromAnotherPlace)?.ToString() ?? "ERROR");
                 }
 
                 if (providedHarmony.Version != existingHarmonyName.Version)
                 {
                     if (sb.Length != 0) sb.AppendLine();
-                    var textObject = TextObjectUtils.Create(SErrorHarmonyWrongVersion);
-                    textObject?.SetTextVariable2("P_VERSION", TextObjectUtils.Create(providedHarmony.Version.ToString()));
-                    textObject?.SetTextVariable2("E_VERSION", TextObjectUtils.Create(existingHarmonyName.Version.ToString()));
+                    var textObject = TextObjectHelper.Create(SErrorHarmonyWrongVersion);
+                    textObject?.SetTextVariable2("P_VERSION", TextObjectHelper.Create(providedHarmony.Version.ToString()));
+                    textObject?.SetTextVariable2("E_VERSION", TextObjectHelper.Create(existingHarmonyName.Version.ToString()));
                     sb.AppendLine(textObject?.ToString() ?? "ERROR");
                 }
 
                 if (sb.Length > 0)
                 {
-                    Task.Run(() => MessageBox.Show(sb.ToString(), TextObjectUtils.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK));
+                    Task.Run(() => MessageBox.Show(sb.ToString(), TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK));
                 }
             }
             else
