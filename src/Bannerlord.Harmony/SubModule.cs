@@ -3,6 +3,7 @@
 using HarmonyLib;
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -41,7 +42,7 @@ This is not recommended. Expect issues!";
 It may be caused by a custom launcher!
 This is not recommended. Expect issues!";
 
-        private static readonly HarmonyRef Harmony = new("Bannerlord.ButterLib.GauntletUISubModule");
+        private static readonly HarmonyRef Harmony = new("Bannerlord.Harmony.GauntletUISubModule");
 
         protected override void OnSubModuleLoad()
         {
@@ -55,7 +56,7 @@ This is not recommended. Expect issues!";
             base.OnBeforeInitialModuleScreenSetAsRoot();
 
             Harmony.Patch(
-                AccessTools.DeclaredMethod(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
+                AccessTools.Method(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
                 postfix: new HarmonyMethod(typeof(SubModule), nameof(OnBeforeInitialModuleScreenSetAsRootPostfix)));
         }
 
@@ -68,7 +69,7 @@ This is not recommended. Expect issues!";
                 // will be able to initialize the chat system we use to log info.
                 CheckLoadOrder();
                 Harmony.Unpatch(
-                    AccessTools.DeclaredMethod(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
+                    AccessTools.Method(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
                     HarmonyPatchType.All,
                     Harmony.Id);
             }
@@ -89,12 +90,19 @@ This is not recommended. Expect issues!";
         {
             var binSubFolder = string.IsNullOrWhiteSpace(Common.ConfigName) ? "Win64_Shipping_Client" : Common.ConfigName;
             var providedHarmonyLocation = Path.Combine(Utilities.GetBasePath(), "Modules", "Bannerlord.Harmony", "bin", binSubFolder, "0Harmony.dll");
+
+            if (!File.Exists(providedHarmonyLocation))
+            {
+                Task.Run(() => MessageBox.Show("", TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK));
+                return;
+            }
+
             var providedHarmony = AssemblyName.GetAssemblyName(providedHarmonyLocation);
 
             var existingHarmony = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(a => !a.IsDynamic)
+                .Where(a => !a.IsDynamic && !string.IsNullOrEmpty(a.Location))
                 .FirstOrDefault(a => Path.GetFileName(a.Location) == "0Harmony.dll");
-            if (existingHarmony != null)
+            if (existingHarmony is not null)
             {
                 var existingHarmonyName = existingHarmony.GetName();
                 var sb = new StringBuilder();
