@@ -25,6 +25,7 @@ namespace Bannerlord.Harmony
         private const uint COLOR_RED = 0xFF0000;
         private const uint COLOR_ORANGE = 0xFF8000;
 
+        // We can't rely on EN since the game assumes that the default locale is always English
         private const string SWarningTitle =
 @"{=qZXqV8GzUH}Warning from Bannerlord.Harmony!";
         private const string SErrorHarmonyNotFound =
@@ -32,6 +33,8 @@ namespace Bannerlord.Harmony
         private const string SErrorHarmonyNotFirst =
  @"{=NxkNTUUV32}Bannerlord.Harmony is not first in loading order!
 This is not recommended. Expect issues!";
+        private const string SErrorHarmonyLibNotFound =
+@"{=HSyaj6TjUG}0Harmony.dll file was not found!";
 
         private const string SErrorHarmonyWrongVersion =
  @"{=Z4d2nSD38a}Loaded 0Harmony.dll version is wrong!
@@ -93,7 +96,7 @@ This is not recommended. Expect issues!";
 
             if (!File.Exists(providedHarmonyLocation))
             {
-                Task.Run(() => MessageBox.Show("", TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK));
+                Task.Run(() => MessageBox.Show(TextObjectHelper.Create(SErrorHarmonyLibNotFound)?.ToString() ?? "ERROR", TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK));
                 return;
             }
 

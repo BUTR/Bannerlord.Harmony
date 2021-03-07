@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="English" />
+  </tags>
+  <strings>
+    <string id="qZXqV8GzUH" text="Warning from Bannerlord.Harmony!" />
+    <string id="EEVJa5azpB" text="Bannerlord.Harmony module was not found!" />
+    <string id="NxkNTUUV32" text="Bannerlord.Harmony is not first in loading order!\nThis is not recommended. Expect issues!" />
+    <string id="HSyaj6TjUG" text="0Harmony.dll file was not found!" />
+    <string id="Z4d2nSD38a" text="Loaded 0Harmony.dll version is wrong!\nExpected {P_VERSION}, but got {E_VERSION}!\nThis is not recommended. Expect issues!" />
+    <string id="ASjx7sqkJs" text="0Harmony.dll was loaded from another location!\nIt may be caused by a custom launcher!\nThis is not recommended. Expect issues!" />
+  </strings>
+</base>
