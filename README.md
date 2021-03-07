@@ -13,7 +13,7 @@
 </p>
 
 This is an unofficial distribution of the [Harmony](https://github.com/pardeike/Harmony) library maintained by the community to have an easier way to manage external library dependencies.  
-Fully automated, it checks every 1 hour for a new release of Harmony.  
+~~Fully automated, it checks every 1 hour for a new release of Harmony.~~  
   
 ## Installation
 This module should be the highest in loading order. Any other module that requires to be set at the top (Better Exception Window, Community Patch, MCM, etc.) should be loaded after this mod.  
