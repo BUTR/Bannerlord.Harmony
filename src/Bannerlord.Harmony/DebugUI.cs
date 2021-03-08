@@ -66,7 +66,7 @@ namespace Bannerlord.Harmony
 
                 if (!allPatches.Any() || !Imgui.TreeNode(originalMethod.FullDescription())) continue;
 
-                Imgui.Columns(6);
+                Imgui.Columns(7);
                 Imgui.Text("Type");
                 foreach (var _ in patches.Prefixes)    Imgui.Text("Prefix");
                 foreach (var _ in patches.Postfixes)   Imgui.Text("Postfix");
