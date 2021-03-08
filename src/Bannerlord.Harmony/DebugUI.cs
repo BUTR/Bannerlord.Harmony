@@ -81,6 +81,13 @@ namespace Bannerlord.Harmony
                 }
 
                 Imgui.NextColumn();
+                Imgui.Text("Method");
+                foreach (var patch in allPatches)
+                {
+                    Imgui.Text($"{patch.PatchMethod.DeclaringType!.FullName}.{patch.PatchMethod.Name}");
+                }
+
+                Imgui.NextColumn();
                 Imgui.Text("Index");
                 foreach (var patch in allPatches)
                 {
