@@ -10,6 +10,8 @@ using TaleWorlds.Engine;
 
 namespace Bannerlord.Harmony
 {
+    // Original idea taken from BannerlordCoop
+    // https://github.com/Bannerlord-Coop-Team/BannerlordCoop/blob/95606e899763b71f62ed5a0fcfcb2e2d8c1b7e92/source/Coop/Mod/DebugUtil/DebugUI.cs
     public class DebugUI
     {
         private readonly string _windowTitle = "Harmony Debug UI";
