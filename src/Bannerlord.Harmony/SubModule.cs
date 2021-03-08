@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 using TaleWorlds.Core;
 using TaleWorlds.Engine;
+using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 
@@ -47,6 +48,8 @@ This is not recommended. Expect issues!";
 
         private static readonly HarmonyRef Harmony = new("Bannerlord.Harmony.GauntletUISubModule");
 
+        private readonly DebugUI _debugUI = new();
+
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
@@ -61,6 +64,20 @@ This is not recommended. Expect issues!";
             Harmony.Patch(
                 AccessTools.Method(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
                 postfix: new HarmonyMethod(typeof(SubModule), nameof(OnBeforeInitialModuleScreenSetAsRootPostfix)));
+        }
+
+        protected override void OnApplicationTick(float dt)
+        {
+            base.OnApplicationTick(dt);
+
+            if ((Input.IsKeyDown(InputKey.LeftControl) || Input.IsKeyDown(InputKey.RightControl)) &&
+                (Input.IsKeyDown(InputKey.LeftAlt) || Input.IsKeyDown(InputKey.RightAlt)) &&
+                Input.IsKeyPressed(InputKey.H))
+            {
+                _debugUI.Visible = !_debugUI.Visible;
+            }
+
+            _debugUI.Update(dt);
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
