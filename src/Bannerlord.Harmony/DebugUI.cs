@@ -66,7 +66,7 @@ namespace Bannerlord.Harmony
 
                 if (!allPatches.Any() || !Imgui.TreeNode(originalMethod.FullDescription())) continue;
 
-                Imgui.Columns(3);
+                Imgui.Columns(6);
                 Imgui.Text("Type");
                 foreach (var _ in patches.Prefixes)    Imgui.Text("Prefix");
                 foreach (var _ in patches.Postfixes)   Imgui.Text("Postfix");
@@ -81,11 +81,32 @@ namespace Bannerlord.Harmony
                 }
 
                 Imgui.NextColumn();
-                Imgui.Text("Method");
+                Imgui.Text("Index");
+                foreach (var patch in allPatches)
+                {
+                    Imgui.Text($"{patch.index}");
+                }
+
+                Imgui.NextColumn();
+                Imgui.Text("Priority");
+                foreach (var patch in allPatches)
+                {
+                    Imgui.Text($"{patch.priority}");
+                }
+
+                Imgui.NextColumn();
+                Imgui.Text("Before");
+                foreach (var patch in allPatches)
+                {
+                    Imgui.Text($"{string.Join(",", patch.before)}");
+                }
+
+                Imgui.NextColumn();
+                Imgui.Text("After");
                 Imgui.Separator();
                 foreach (var patch in allPatches)
                 {
-                    Imgui.Text($"{patch.PatchMethod.DeclaringType!.FullName}.{patch.PatchMethod.Name}");
+                    Imgui.Text($"{string.Join(",", patch.after)}");
                 }
 
                 Imgui.Columns();
