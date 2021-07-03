@@ -42,7 +42,7 @@ This is not recommended. Expect issues!";
 Expected {P_VERSION}, but got {E_VERSION}!
 This is not recommended. Expect issues!";
         private const string SErrorHarmonyLoadedFromAnotherPlace =
-@"{=ASjx7sqkJs}0Harmony.dll was loaded from another location!
+@"{=ASjx7sqkJs}0Harmony.dll was loaded from another location: {LOCATION}!
 It may be caused by a custom launcher!
 This is not recommended. Expect issues!";
 
@@ -130,7 +130,9 @@ This is not recommended. Expect issues!";
                 if (string.IsNullOrEmpty(existingHarmony.Location) || Path.GetFullPath(providedHarmonyLocation) != Path.GetFullPath(existingHarmony.Location))
                 {
                     if (sb.Length != 0) sb.AppendLine();
-                    sb.AppendLine(TextObjectHelper.Create(SErrorHarmonyLoadedFromAnotherPlace)?.ToString() ?? "ERROR");
+                    var textObject = TextObjectHelper.Create(SErrorHarmonyLoadedFromAnotherPlace);
+                    textObject?.SetTextVariable2("LOCATION", TextObjectHelper.Create(string.IsNullOrEmpty(existingHarmony.Location) ? string.Empty : Path.GetFullPath(existingHarmony.Location)));
+                    sb.AppendLine(textObject?.ToString() ?? "ERROR");
                 }
 
                 if (providedHarmony.Version != existingHarmonyName.Version)
