@@ -18,7 +18,7 @@ This is an unofficial distribution of the [Harmony](https://github.com/pardeike/
 ~~Fully automated, it checks every 1 hour for a new release of Harmony.~~  
   
 ## Installation
-This module should be the highest in loading order. Any other module that requires to be set at the top (Better Exception Window, Community Patch, MCM, etc.) should be loaded after this mod.  
+This module should be the highest in loading order. Any other module that requires to be set at the top (Better Exception Window, Community Patch, MCM, etc.) should be loaded after this mod. Don't forget to unblock files!
   
 ## For Players
 This mod is intended to ensure that all mods in a player's modlist are using the latest version of Harmony to minimize conflicts.  
