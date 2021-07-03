@@ -81,7 +81,7 @@ jobs:
         path: ./bannerlord
 
     - name: Zip Bannerlord.Harmony
-      run: 7z a -tzip Bannerlord.Harmony.zip ./bannerlord/*
+      run: 7z a -t7z Bannerlord.Harmony.7z ./bannerlord/* -mx9
       #shell: pwsh
       # pwsh casues it to include the root folder
 
@@ -104,7 +104,7 @@ jobs:
       run: >-
         bannerlord_nexusmods_uploader upload -g mountandblade2bannerlord -m 2006 -n "Harmony"
         -v "v${{steps.version.outputs.mod_version}}" -l true -e true -d ""
-        -p "$PWD/Bannerlord.Harmony.zip";
+        -p "$PWD/Bannerlord.Harmony.7z";
       env:
         NEXUSMODS_COOKIES_JSON: '${{secrets.NEXUSMODS_COOKIES_JSON}}'
       shell: pwsh
