@@ -149,7 +149,7 @@ jobs:
         path: ./bannerlord
 
     - name: Zip Bannerlord.Harmony
-      run: 7z a -tzip Bannerlord.Harmony.zip ./bannerlord/*
+      run: 7z a -t7z Bannerlord.Harmony.7z ./bannerlord/* -mx9
       #shell: pwsh
       # pwsh casues it to include the root folder
 
@@ -182,8 +182,8 @@ jobs:
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{steps.create_release.outputs.upload_url}}
-        asset_path: ./Bannerlord.Harmony.zip
-        asset_name: Bannerlord.Harmony.zip
-        asset_content_type: application/zip
+        asset_path: ./Bannerlord.Harmony.7z
+        asset_name: Bannerlord.Harmony.7z
+        asset_content_type: application/x-7z-compressed
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
