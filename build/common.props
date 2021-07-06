@@ -6,7 +6,7 @@
     <!--Module Version-->
     <Version>0.0.1.0</Version>
     <!--Harmony Version-->
-    <HarmonyVersion>2.0.4</HarmonyVersion>
+    <HarmonyVersion>2.1.0</HarmonyVersion>
     <!--BuildResources Version-->
     <BuildResourcesVersion>1.0.0.33</BuildResourcesVersion>
     <BUTRSharedVersion>1.6.1.26</BUTRSharedVersion>
