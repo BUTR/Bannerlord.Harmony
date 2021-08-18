@@ -1,5 +1,5 @@
 <Project>
 
-  <Import Project="build/*.props" />
+  <Import Project="build/common.props" />
 
 </Project>
