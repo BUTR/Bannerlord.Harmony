@@ -6,5 +6,4 @@ updates:
       interval: "daily"
     ignore:
       - dependency-name: "Newtonsoft.Json"
-        versions: ["11.0.2"]
       - dependency-name: "Bannerlord.ReferenceAssemblies.*"
