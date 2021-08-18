@@ -1,0 +1,6 @@
+<Project>
+
+  <Import Project="../build/common.props" />
+  <Import Project="../build/*.props" />
+
+</Project>
