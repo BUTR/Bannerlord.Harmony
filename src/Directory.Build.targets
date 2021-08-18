@@ -1,6 +1,0 @@
-<!--EXTERNAL_PROPERTIES: MSBuildThisFileDirectory-->
-<Project>
-  
-  <Import Project="../build/*.targets" />
-
-</Project>
