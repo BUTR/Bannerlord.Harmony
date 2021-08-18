@@ -11,7 +11,7 @@
     <BuildResourcesVersion>1.0.0.33</BuildResourcesVersion>
     <BUTRSharedVersion>1.6.1.26</BUTRSharedVersion>
     <!--Current Bannerlord Version-->
-    <GameVersion>1.1.0</GameVersion>
+    <GameVersion>1.6.1.*</GameVersion>
     <!--Bannerlord's Root Folder. Leave empty if you want it to be tried to be autoresolved.-->
     <GameFolder Condition="$(Configuration) == 'Stable_Debug' OR $(Configuration) == 'Stable_Release'">$(BANNERLORD_STABLE_DIR)</GameFolder>
     <GameFolder Condition="$(Configuration) == 'Beta_Debug' OR $(Configuration) == 'Beta_Release'">$(BANNERLORD_BETA_DIR)</GameFolder>
