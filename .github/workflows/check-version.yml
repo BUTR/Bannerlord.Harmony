@@ -21,13 +21,10 @@ jobs:
     name: Check for newer version
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@master
+    - name: Setup
+      uses: butr/actions-common-setup@v1.1
       with:
-        dotnet-version: 3.1.x
+        github-token: ${{secrets.GITHUB_TOKEN}}
 
     - name: Run VersionChecker (Release)
       id: status
