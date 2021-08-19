@@ -7,3 +7,8 @@ updates:
     ignore:
       - dependency-name: "Newtonsoft.Json"
       - dependency-name: "Bannerlord.ReferenceAssemblies.*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
