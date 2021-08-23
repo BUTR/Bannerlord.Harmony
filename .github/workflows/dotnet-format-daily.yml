@@ -1,0 +1,16 @@
+name: Daily Code Format Check
+
+on:
+  schedule:
+    - cron: 0 0 * * * # Every day at midnight (UTC)
+  workflow_dispatch:
+  
+jobs:
+  dotnet-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Formatting
+        uses: butr/actions-code-format-setup@v1.4
+        with:
+          workspace: "src/Bannerlord.Harmony.sln"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
