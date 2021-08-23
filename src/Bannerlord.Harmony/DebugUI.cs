@@ -68,10 +68,10 @@ namespace Bannerlord.Harmony
 
                 Imgui.Columns(7);
                 Imgui.Text("Type");
-                foreach (var _ in patches.Prefixes)    Imgui.Text("Prefix");
-                foreach (var _ in patches.Postfixes)   Imgui.Text("Postfix");
+                foreach (var _ in patches.Prefixes) Imgui.Text("Prefix");
+                foreach (var _ in patches.Postfixes) Imgui.Text("Postfix");
                 foreach (var _ in patches.Transpilers) Imgui.Text("Transpiler");
-                foreach (var _ in patches.Finalizers)  Imgui.Text("Finalizer");
+                foreach (var _ in patches.Finalizers) Imgui.Text("Finalizer");
 
                 Imgui.NextColumn();
                 Imgui.Text("Owner");
