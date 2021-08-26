@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+  <tags>
+    <tag language="Русский" />
+  </tags>
+  <strings>
+    <string id="qZXqV8GzUH" text="Предупреждение от Bannerlord.Harmony!" />
+    <string id="EEVJa5azpB" text="Модуль Bannerlord.Harmony не найден!" />
+    <string id="NxkNTUUV32" text="Bannerlord.Harmony зашружен не первым в спике модулей!{EXPECT_ISSUES_WARNING}" />
+    <string id="HSyaj6TjUG" text="Файл 0Harmony.dll file не найден!" />
+    <string id="Z4d2nSD38a" text="Используемая версия 0Harmony.dll ошибочна!{NL}Ожидается версия {P_VERSION}, но загружена {E_VERSION}!{EXPECT_ISSUES_WARNING}" />
+    <string id="ASjx7sqkJs" text="Файл 0Harmony.dll был загружен из другого места: {LOCATION}!{NL}Это может быть следствием установки специального загрузчика или мода!{EXPECT_ISSUES_WARNING}" />
+    <string id="xTeLdSrXk4" text="{NL}Это нежелательная ситуация, ожидайте проблем!{NL}Если ваша игра вылетела и вы получали данное предупреждение, пожалуйста, упомяните об этом при обращении за помощью!" />
+  </strings>
+</base>

@@ -15,6 +15,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 
 using Path = System.IO.Path;
@@ -27,28 +28,22 @@ namespace Bannerlord.Harmony
         private const uint COLOR_ORANGE = 0xFF8000;
 
         // We can't rely on EN since the game assumes that the default locale is always English
-        private const string SWarningTitle =
-@"{=qZXqV8GzUH}Warning from Bannerlord.Harmony!";
-        private const string SErrorHarmonyNotFound =
-@"{=EEVJa5azpB}Bannerlord.Harmony module was not found!";
-        private const string SErrorHarmonyNotFirst =
- @"{=NxkNTUUV32}Bannerlord.Harmony is not first in loading order!
-This is not recommended. Expect issues!";
-        private const string SErrorHarmonyLibNotFound =
-@"{=HSyaj6TjUG}0Harmony.dll file was not found!";
+        private const string SWarningTitle = @"{=qZXqV8GzUH}Warning from Bannerlord.Harmony!";
+        private const string SErrorHarmonyNotFound = @"{=EEVJa5azpB}Bannerlord.Harmony module was not found!";
+        private const string SErrorHarmonyNotFirst = @"{=NxkNTUUV32}Bannerlord.Harmony is not first in loading order!{EXPECT_ISSUES_WARNING}";
+        private const string SErrorHarmonyLibNotFound = @"{=HSyaj6TjUG}0Harmony.dll file was not found!";
 
-        private const string SErrorHarmonyWrongVersion =
- @"{=Z4d2nSD38a}Loaded 0Harmony.dll version is wrong!
-Expected {P_VERSION}, but got {E_VERSION}!
-This is not recommended. Expect issues!";
-        private const string SErrorHarmonyLoadedFromAnotherPlace =
-@"{=ASjx7sqkJs}0Harmony.dll was loaded from another location: {LOCATION}!
-It may be caused by a custom launcher!
-This is not recommended. Expect issues!";
+        private const string SErrorHarmonyWrongVersion = @"{=Z4d2nSD38a}Loaded 0Harmony.dll version is wrong!{NL}Expected {P_VERSION}, but got {E_VERSION}!{EXPECT_ISSUES_WARNING}";
+        private const string SErrorHarmonyLoadedFromAnotherPlace = @"{=ASjx7sqkJs}0Harmony.dll was loaded from another location: {LOCATION}!{NL}It may be caused by a custom launcher or some other mod!{EXPECT_ISSUES_WARNING}";
+
+        private const string SWarningExpectIssues = @"{=xTeLdSrXk4}{NL}This is not recommended. Expect issues!{NL}If your game crashes and you had this warning, please, mention it in the bug report!";
 
         private static readonly HarmonyRef Harmony = new("Bannerlord.Harmony.GauntletUISubModule");
 
         private readonly DebugUI _debugUI = new();
+
+        private static TextObject? GetExpectIssuesWarning() =>
+            TextObjectHelper.Create(SWarningExpectIssues)?.SetTextVariable2("NL", Environment.NewLine);
 
         protected override void OnSubModuleLoad()
         {
@@ -103,7 +98,11 @@ This is not recommended. Expect issues!";
             if (harmonyModuleIndex == -1)
                 InformationManager.DisplayMessage(new InformationMessage(TextObjectHelper.Create(SErrorHarmonyNotFound)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
             if (harmonyModuleIndex != 0)
-                InformationManager.DisplayMessage(new InformationMessage(TextObjectHelper.Create(SErrorHarmonyNotFirst)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
+            {
+
+                var textObject = TextObjectHelper.Create(SErrorHarmonyNotFirst)?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
+                InformationManager.DisplayMessage(new InformationMessage(textObject?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
+            }
         }
 
         private static void LoadHarmony()
@@ -132,6 +131,8 @@ This is not recommended. Expect issues!";
                     if (sb.Length != 0) sb.AppendLine();
                     var textObject = TextObjectHelper.Create(SErrorHarmonyLoadedFromAnotherPlace);
                     textObject?.SetTextVariable2("LOCATION", TextObjectHelper.Create(string.IsNullOrEmpty(existingHarmony.Location) ? string.Empty : Path.GetFullPath(existingHarmony.Location)));
+                    textObject?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
+                    textObject?.SetTextVariable2("NL", Environment.NewLine);
                     sb.AppendLine(textObject?.ToString() ?? "ERROR");
                 }
 
@@ -141,6 +142,8 @@ This is not recommended. Expect issues!";
                     var textObject = TextObjectHelper.Create(SErrorHarmonyWrongVersion);
                     textObject?.SetTextVariable2("P_VERSION", TextObjectHelper.Create(providedHarmony.Version.ToString()));
                     textObject?.SetTextVariable2("E_VERSION", TextObjectHelper.Create(existingHarmonyName.Version.ToString()));
+                    textObject?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
+                    textObject?.SetTextVariable2("NL", Environment.NewLine);
                     sb.AppendLine(textObject?.ToString() ?? "ERROR");
                 }
 
