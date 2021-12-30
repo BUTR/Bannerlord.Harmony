@@ -99,7 +99,6 @@ namespace Bannerlord.Harmony
                 InformationManager.DisplayMessage(new InformationMessage(TextObjectHelper.Create(SErrorHarmonyNotFound)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
             if (harmonyModuleIndex != 0)
             {
-
                 var textObject = TextObjectHelper.Create(SErrorHarmonyNotFirst)?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
                 InformationManager.DisplayMessage(new InformationMessage(textObject?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
             }
