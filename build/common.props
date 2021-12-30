@@ -6,10 +6,11 @@
     <!--Module Version-->
     <Version>0.0.1.0</Version>
     <!--Harmony Version-->
-    <HarmonyVersion>2.1.1</HarmonyVersion>
+    <HarmonyVersion>2.2.0</HarmonyVersion>
     <!--BuildResources Version-->
     <BuildResourcesVersion>1.0.0.39</BuildResourcesVersion>
-    <BUTRSharedVersion>1.6.1.57</BUTRSharedVersion>
+    <BUTRSharedVersion>2.0.0.75</BUTRSharedVersion>
+    <BUTRModuleManagerVersion>2.0.81</BUTRModuleManagerVersion>
     <!--Current Bannerlord Version-->
     <GameVersion>1.1.0</GameVersion>
     <!--Bannerlord's Root Folder. Leave empty if you want it to be tried to be autoresolved.-->
@@ -47,7 +48,7 @@
   </PropertyGroup>
   <!--SorceLink-->
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
   </ItemGroup>
   <!--CI Builds-->
   <ItemGroup Condition="$(TargetFramework) == 'net472' AND $(OS) != 'Windows_NT'">
