@@ -11,7 +11,8 @@
 
   <!--Module Creation-->
   <PropertyGroup>
-    <ModuleName>$(MSBuildProjectName)</ModuleName>
+    <ModuleId>Bannerlord.Harmony</ModuleId>
+    <ModuleName>Harmony</ModuleName>
   </PropertyGroup>
   <!--Module Creation-->
 
