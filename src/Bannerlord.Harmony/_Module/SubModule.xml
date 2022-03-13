@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <Name value="Harmony" />
-  <Id value="$modulename$" />
+  <Name value="$modulename$" />
+  <Id value="$moduleid$" />
   <Version value="v$version$" />
   <Official value="false" />
   <DefaultModule value="false" />
@@ -21,8 +21,8 @@
   <SubModules>
     <SubModule>
       <Name value="Harmony" />
-      <DLLName value="$modulename$.dll" />
-      <SubModuleClassType value="$modulename$.SubModule" />
+      <DLLName value="$moduleid$.dll" />
+      <SubModuleClassType value="$moduleid$.SubModule" />
       <!-- For compatibility with Legacy versions-->
       <Tags>
         <Tag key="DedicatedServerType" value="none" />
