@@ -111,7 +111,9 @@ namespace Bannerlord.Harmony
 
             if (!File.Exists(providedHarmonyLocation))
             {
-                Task.Run(() => MessageBox.Show(TextObjectHelper.Create(SErrorHarmonyLibNotFound)?.ToString() ?? "ERROR", TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK));
+                Task.Run(() => MessageBox.Show(TextObjectHelper.Create(SErrorHarmonyLibNotFound)?.ToString() ?? "ERROR", 
+                    TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, (MessageBoxOptions) 0x40000));
                 return;
             }
 
@@ -148,7 +150,9 @@ namespace Bannerlord.Harmony
 
                 if (sb.Length > 0)
                 {
-                    Task.Run(() => MessageBox.Show(sb.ToString(), TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK));
+                    Task.Run(() => MessageBox.Show(sb.ToString(),
+                        TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR",MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, (MessageBoxOptions) 0x40000));
                 }
             }
             else
