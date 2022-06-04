@@ -26,11 +26,11 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Run VersionChecker (Release)
+    - name: Run VersionChecker
       id: status
       run: >-
         dotnet build ./build/VersionChecker/VersionChecker.csproj --configuration Release;
-        $status = dotnet run --project ./build/VersionChecker/VersionChecker.csproj --no-build --configuration Release ;
+        $status = dotnet run --project ./build/VersionChecker/VersionChecker.csproj --no-build --configuration Release;
         echo "::set-env name=newer_version_status::$status";
       shell: pwsh
 
@@ -38,11 +38,11 @@ jobs:
       run:  echo "::warning ::newer_version_status=${{steps.status.outputs.newer_version_status}}"
       shell: pwsh
 
-    - name: Trigger publish-on-nexusmods
+    - name: Trigger publish
       if: steps.status.outputs.newer_version_status == '0'
       uses: peter-evans/repository-dispatch@v2
       with:
         token: ${{secrets.REPO_ACCESS_TOKEN}}
         repository: BUTR/Bannerlord.Harmony
-        event-type: publish-on-nexusmods
+        event-type: publish
         client-payload: '{"github": ${{ toJson(github) }}}'

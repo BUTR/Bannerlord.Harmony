@@ -8,7 +8,7 @@ on:
       - 'build/**'
       - 'src/Bannerlord.Harmony/**'
   repository_dispatch:
-    types: publish-on-nexusmods
+    types: publish
 
 env:
   # Disable the .NET logo in the console output.
@@ -28,7 +28,7 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Build Bannerlord.Harmony (Release)
+    - name: Build Bannerlord.Harmony
       run: >-
         mkdir bannerlord;
         dotnet build src/Bannerlord.Harmony/Bannerlord.Harmony.csproj --configuration Release -p:GameFolder="$PWD/bannerlord";
