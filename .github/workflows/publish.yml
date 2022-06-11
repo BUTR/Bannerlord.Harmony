@@ -8,7 +8,7 @@ on:
       - 'build/**'
       - 'src/Bannerlord.Harmony/**'
   repository_dispatch:
-    types: publish-on-nexusmods
+    types: publish
 
 env:
   # Disable the .NET logo in the console output.
@@ -28,14 +28,14 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Build Bannerlord.Harmony (Release)
+    - name: Build Bannerlord.Harmony
       run: >-
         mkdir bannerlord;
         dotnet build src/Bannerlord.Harmony/Bannerlord.Harmony.csproj --configuration Release -p:GameFolder="$PWD/bannerlord";
       shell: pwsh
 
     - name: Upload Bannerlord folder
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: bannerlord
         path: ./bannerlord/
@@ -55,7 +55,7 @@ jobs:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
     - name: Download bannerlord folder
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: bannerlord
         path: ./bannerlord
@@ -94,7 +94,7 @@ jobs:
       shell: pwsh
 
     - name: Upload Screenshots Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Screenshots
         path: Screenshots.7z
@@ -113,7 +113,7 @@ jobs:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
     - name: Download bannerlord folder
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: bannerlord
         path: ./bannerlord

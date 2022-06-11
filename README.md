@@ -22,6 +22,8 @@
   <a href="https://www.nexusmods.com/mountandblade2bannerlord/mods/2006" alt="NexusMods Harmony">
     <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fnexusmods-downloads-ayuqql60xfxb.runkit.sh%2F%3Ftype%3Dviews%26gameId%3D3174%26modId%3D2006" />
   </a>
+  </br>
+  <img src="https://staticdelivery.nexusmods.com/mods/3174/images/2006/2006-1615240039-1903390080.png" width="800">
 </p>
 
 This is an unofficial distribution of the [Harmony](https://github.com/pardeike/Harmony) library maintained by the community to have an easier way to manage external library dependencies.  
@@ -34,6 +36,8 @@ This module should be the highest in loading order. Any other module that requir
 This mod is intended to ensure that all mods in a player's modlist are using the latest version of Harmony to minimize conflicts.  
   
 ## For Modders
+**We added a Debug UI! Available via CTRL+ALT+H.**
+
 You still need to reference Harmony as a NuGet package, it is not required to include ``0Harmony.dll`` in the final /bin output of your module.  
 You do need to add this to your ``SubModule.xml``  
 ```xml
