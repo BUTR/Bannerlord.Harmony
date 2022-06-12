@@ -3,16 +3,17 @@ using HarmonyLib.BUTR.Extensions;
 
 using TaleWorlds.Library;
 
-namespace Bannerlord.Harmony.Helpers
+namespace Bannerlord.Harmony.Utils
 {
-    internal static class InformationMessageHelper
+    internal static class InformationMessageUtils
     {
         private delegate object V1Delegate(string information, Color color);
         private static readonly V1Delegate? V1;
 
-        static InformationMessageHelper()
+        static InformationMessageUtils()
         {
-            var type = AccessTools2.TypeByName("TaleWorlds.Core.InformationMessage") ?? AccessTools2.TypeByName("TaleWorlds.Library.InformationMessage");
+            var type = AccessTools2.TypeByName("TaleWorlds.Core.InformationMessage") ??
+                       AccessTools2.TypeByName("TaleWorlds.Library.InformationMessage");
             foreach (var constructorInfo in AccessTools.GetDeclaredConstructors(type, false))
             {
                 var @params = constructorInfo.GetParameters();

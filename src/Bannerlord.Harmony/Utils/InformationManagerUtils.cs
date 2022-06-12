@@ -2,17 +2,18 @@
 
 using System;
 
-namespace Bannerlord.Harmony.Helpers
+namespace Bannerlord.Harmony.Utils
 {
-    internal static class InformationManagerHelper
+    internal static class InformationManagerUtils
     {
         private delegate void DisplayMessageV1Delegate(object data);
 
         private static readonly DisplayMessageV1Delegate? DisplayMessageV1;
 
-        static InformationManagerHelper()
+        static InformationManagerUtils()
         {
-            var type = AccessTools2.TypeByName("TaleWorlds.Core.InformationManager") ?? AccessTools2.TypeByName("TaleWorlds.Library.InformationManager");
+            var type = AccessTools2.TypeByName("TaleWorlds.Core.InformationManager") ??
+                       AccessTools2.TypeByName("TaleWorlds.Library.InformationManager");
             foreach (var methodInfo in HarmonyLib.AccessTools.GetDeclaredMethods(type))
             {
                 var @params = methodInfo.GetParameters();

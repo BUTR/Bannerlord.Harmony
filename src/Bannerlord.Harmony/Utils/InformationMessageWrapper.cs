@@ -1,4 +1,4 @@
-﻿namespace Bannerlord.Harmony.Helpers
+﻿namespace Bannerlord.Harmony.Utils
 {
     internal sealed class InformationMessageWrapper
     {

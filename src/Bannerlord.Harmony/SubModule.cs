@@ -1,5 +1,5 @@
 ﻿using Bannerlord.BUTR.Shared.Helpers;
-using Bannerlord.Harmony.Helpers;
+using Bannerlord.Harmony.Utils;
 
 using HarmonyLib;
 
@@ -96,11 +96,11 @@ namespace Bannerlord.Harmony
             var harmonyModule = loadedModules.SingleOrDefault(x => x.Id == "Bannerlord.Harmony");
             var harmonyModuleIndex = harmonyModule is not null ? loadedModules.IndexOf(harmonyModule) : -1;
             if (harmonyModuleIndex == -1)
-                InformationManagerHelper.DisplayMessage(InformationMessageHelper.Create(TextObjectHelper.Create(SErrorHarmonyNotFound)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
+                InformationManagerUtils.DisplayMessage(InformationMessageUtils.Create(TextObjectHelper.Create(SErrorHarmonyNotFound)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
             if (harmonyModuleIndex != 0)
             {
                 var textObject = TextObjectHelper.Create(SErrorHarmonyNotFirst)?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
-                InformationManagerHelper.DisplayMessage(InformationMessageHelper.Create(textObject?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
+                InformationManagerUtils.DisplayMessage(InformationMessageUtils.Create(textObject?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
             }
         }
 
