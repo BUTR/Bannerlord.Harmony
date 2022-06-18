@@ -6,8 +6,9 @@
     <!--Module Version-->
     <Version>0.0.1.0</Version>
     <!--Harmony Version-->
+    <HarmonyExtensionsVersion>3.1.0.61</HarmonyExtensionsVersion>
     <HarmonyVersion>2.2.1</HarmonyVersion>
-    <!--BuildResources Version-->
+    <HarmonyAnalyzerVersion>1.0.1.42</HarmonyAnalyzerVersion>
     <BuildResourcesVersion>1.0.1.68</BuildResourcesVersion>
     <BUTRAnalyzerVersion>1.0.1.12</BUTRAnalyzerVersion>
     <BUTRSharedVersion>2.0.0.82</BUTRSharedVersion>
@@ -54,6 +55,13 @@
   <!--CI Builds-->
   <ItemGroup Condition="$(TargetFramework) == 'net472' AND $(OS) != 'Windows_NT'">
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(GITHUB_ACTIONS)' != 'true'">
+    <PackageReference Include="BUTR.Harmony.Analyzer" Version="$(HarmonyAnalyzerVersion)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
