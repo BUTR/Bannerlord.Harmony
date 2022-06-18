@@ -1,6 +1,8 @@
 ﻿using HarmonyLib.BUTR.Extensions;
 
 using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Bannerlord.Harmony.Utils
 {
@@ -14,7 +16,7 @@ namespace Bannerlord.Harmony.Utils
         {
             var type = AccessTools2.TypeByName("TaleWorlds.Core.InformationManager") ??
                        AccessTools2.TypeByName("TaleWorlds.Library.InformationManager");
-            foreach (var methodInfo in HarmonyLib.AccessTools.GetDeclaredMethods(type))
+            foreach (var methodInfo in HarmonyLib.AccessTools.GetDeclaredMethods(type) ?? Enumerable.Empty<MethodInfo>())
             {
                 var @params = methodInfo.GetParameters();
                 if (@params.Length == 1 && @params[0].ParameterType.Name.Equals("InformationMessage", StringComparison.Ordinal))

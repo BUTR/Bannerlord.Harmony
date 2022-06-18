@@ -1,6 +1,9 @@
 ﻿using HarmonyLib;
 using HarmonyLib.BUTR.Extensions;
 
+using System.Linq;
+using System.Reflection;
+
 using TaleWorlds.Library;
 
 namespace Bannerlord.Harmony.Utils
@@ -14,7 +17,7 @@ namespace Bannerlord.Harmony.Utils
         {
             var type = AccessTools2.TypeByName("TaleWorlds.Core.InformationMessage") ??
                        AccessTools2.TypeByName("TaleWorlds.Library.InformationMessage");
-            foreach (var constructorInfo in AccessTools.GetDeclaredConstructors(type, false))
+            foreach (var constructorInfo in AccessTools.GetDeclaredConstructors(type, false) ?? Enumerable.Empty<ConstructorInfo>())
             {
                 var @params = constructorInfo.GetParameters();
                 if (@params.Length == 9)
@@ -28,8 +31,7 @@ namespace Bannerlord.Harmony.Utils
         {
             if (V1 is not null)
             {
-                var obj = V1(information, color);
-                return InformationMessageWrapper.Create(obj);
+                return InformationMessageWrapper.Create(V1(information, color));
             }
 
             return null;
