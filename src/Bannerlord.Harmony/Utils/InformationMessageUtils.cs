@@ -20,7 +20,7 @@ namespace Bannerlord.Harmony.Utils
             foreach (var constructorInfo in AccessTools.GetDeclaredConstructors(type, false) ?? Enumerable.Empty<ConstructorInfo>())
             {
                 var @params = constructorInfo.GetParameters();
-                if (@params.Length == 9)
+                if (@params.Length == 2 && @params[0].ParameterType == typeof(string) && @params[1].ParameterType == typeof(Color))
                 {
                     V1 = AccessTools2.GetDelegate<V1Delegate>(constructorInfo);
                 }
