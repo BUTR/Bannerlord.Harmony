@@ -1,15 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Module>
-  <Name value="$modulename$" />
+<Module xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/SubModule.xsd" >
   <Id value="$moduleid$" />
+  <Name value="$modulename$" />
   <Version value="v$version$" />
   <Official value="false" />
   <DefaultModule value="false" />
   <SingleplayerModule value="true" />
   <MultiplayerModule value="false" />
+  <ModuleCategory value="Singleplayer" />
   <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/2006" />
   <DependedModules />
-  <!-- Prototype -->
+  <ModulesToLoadAfterThis>
+    <Module Id="Native" />
+    <Module Id="SandBoxCore" />
+    <Module Id="Sandbox" />
+    <Module Id="StoryMode" />
+    <Module Id="CustomBattle" />
+  </ModulesToLoadAfterThis>
+  <!-- Community Dependency Metadata -->
+  <!-- https://github.com/BUTR/Bannerlord.BUTRLoader#for-modders -->
   <DependedModuleMetadatas>
     <DependedModuleMetadata id="Native" order="LoadAfterThis" optional="true" />
     <DependedModuleMetadata id="SandBoxCore" order="LoadAfterThis" optional="true" />
@@ -17,7 +27,7 @@
     <DependedModuleMetadata id="StoryMode" order="LoadAfterThis" optional="true" />
     <DependedModuleMetadata id="CustomBattle" order="LoadAfterThis" optional="true" />
   </DependedModuleMetadatas>
-  <!-- Prototype -->
+  <!-- Community Dependency Metadata -->
   <SubModules>
     <SubModule>
       <Name value="Harmony" />
