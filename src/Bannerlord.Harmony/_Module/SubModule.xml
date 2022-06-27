@@ -8,9 +8,17 @@
   <DefaultModule value="false" />
   <SingleplayerModule value="true" />
   <MultiplayerModule value="false" />
+  <ModuleCategory value="Singleplayer" />
   <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/2006" />
   <DependedModules />
-  <!-- Prototype -->
+  <ModulesToLoadAfterThis>
+    <Module Id="Native" />
+    <Module Id="SandBoxCore" />
+    <Module Id="Sandbox" />
+    <Module Id="StoryMode" />
+    <Module Id="CustomBattle" />
+  </ModulesToLoadAfterThis>
+  <!-- Community Metadata -->
   <DependedModuleMetadatas>
     <DependedModuleMetadata id="Native" order="LoadAfterThis" optional="true" />
     <DependedModuleMetadata id="SandBoxCore" order="LoadAfterThis" optional="true" />
@@ -18,7 +26,7 @@
     <DependedModuleMetadata id="StoryMode" order="LoadAfterThis" optional="true" />
     <DependedModuleMetadata id="CustomBattle" order="LoadAfterThis" optional="true" />
   </DependedModuleMetadatas>
-  <!-- Prototype -->
+  <!-- Community Metadata -->
   <SubModules>
     <SubModule>
       <Name value="Harmony" />
