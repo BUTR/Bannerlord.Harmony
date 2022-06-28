@@ -24,18 +24,17 @@ namespace Bannerlord.Harmony.Utils
         public static void LoadLanguageData()
         {
             if (LoadXmlFile is null || LoadFromXml is null) return;
-            
-            foreach (var moduleInfo in ModuleInfoHelper.GetLoadedModules())
+
+            var moduleInfo = ModuleInfoHelper.GetModuleByType(typeof(LocalizedTextManagerUtils));
+            if (moduleInfo is null) return;
+
+            var path = Path.Combine(Utilities.GetBasePath(), "Modules", moduleInfo.Id, "ModuleData", "Languages");
+            if (!Directory.Exists(path)) return;
+
+            foreach (var file in Directory.GetFiles(path, "language_data.xml_", SearchOption.AllDirectories))
             {
-                var path = Path.Combine(Utilities.GetBasePath(), "Modules", moduleInfo.Id, "ModuleData", "Languages");
-                
-                if (!Directory.Exists(path)) continue;
-                
-                foreach (var file in Directory.GetFiles(path, "language_data.xml_", SearchOption.AllDirectories))
-                {
-                    if (LoadXmlFile(file) is { } xmlDocument)
-                        LoadFromXml(xmlDocument, path);
-                }
+                if (LoadXmlFile(file) is { } xmlDocument)
+                    LoadFromXml(xmlDocument, path);
             }
         }
     }
