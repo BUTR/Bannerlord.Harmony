@@ -50,7 +50,7 @@ namespace Bannerlord.Harmony
             base.OnSubModuleLoad();
 
             LoadHarmony();
-            
+
             if (ApplicationVersionHelper.GameVersion() is { } gameVersion)
             {
                 if (gameVersion.Major is 1 && gameVersion.Minor is 8 && gameVersion.Revision is >= 0)
