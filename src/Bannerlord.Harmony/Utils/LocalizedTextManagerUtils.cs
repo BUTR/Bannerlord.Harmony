@@ -31,7 +31,7 @@ namespace Bannerlord.Harmony.Utils
             var path = Path.Combine(Utilities.GetBasePath(), "Modules", moduleInfo.Id, "ModuleData", "Languages");
             if (!Directory.Exists(path)) return;
 
-            foreach (var file in Directory.GetFiles(path, "language_data.xml_", SearchOption.AllDirectories))
+            foreach (var file in Directory.GetFiles(path, "language_data._xml", SearchOption.AllDirectories))
             {
                 if (LoadXmlFile(file) is { } xmlDocument)
                     LoadFromXml(xmlDocument, path);
