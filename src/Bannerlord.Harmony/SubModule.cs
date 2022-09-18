@@ -2,9 +2,9 @@
 using Bannerlord.Harmony.Utils;
 
 using HarmonyLib;
+using HarmonyLib.BUTR.Extensions;
 
 using System;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -12,7 +12,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using TaleWorlds.Engine;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -31,7 +30,6 @@ namespace Bannerlord.Harmony
         private const string SWarningTitle = @"{=qZXqV8GzUH}Warning from Bannerlord.Harmony!";
         private const string SErrorHarmonyNotFound = @"{=EEVJa5azpB}Bannerlord.Harmony module was not found!";
         private const string SErrorHarmonyNotFirst = @"{=NxkNTUUV32}Bannerlord.Harmony is not first in loading order!{EXPECT_ISSUES_WARNING}";
-        private const string SErrorHarmonyLibNotFound = @"{=HSyaj6TjUG}0Harmony.dll file was not found!";
 
         private const string SErrorHarmonyWrongVersion = @"{=Z4d2nSD38a}Loaded 0Harmony.dll version is wrong!{NL}Expected {P_VERSION}, but got {E_VERSION}!{EXPECT_ISSUES_WARNING}";
         private const string SErrorHarmonyLoadedFromAnotherPlace = @"{=ASjx7sqkJs}0Harmony.dll was loaded from another location: {LOCATION}!{NL}It may be caused by a custom launcher or some other mod!{EXPECT_ISSUES_WARNING}";
@@ -53,7 +51,7 @@ namespace Bannerlord.Harmony
 
             if (ApplicationVersionHelper.GameVersion() is { } gameVersion)
             {
-                if (gameVersion.Major is 1 && gameVersion.Minor is 8 && gameVersion.Revision is >= 0)
+                if (gameVersion.Major is 1 && gameVersion.Minor is 8 && gameVersion.Revision >= 0)
                 {
                     LocalizedTextManagerUtils.LoadLanguageData();
                 }
@@ -65,7 +63,7 @@ namespace Bannerlord.Harmony
             base.OnBeforeInitialModuleScreenSetAsRoot();
 
             Harmony.Patch(
-                AccessTools.Method(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
+                AccessTools2.Method("TaleWorlds.MountAndBlade.MBSubModuleBase:OnBeforeInitialModuleScreenSetAsRoot"),
                 postfix: new HarmonyMethod(typeof(SubModule), nameof(OnBeforeInitialModuleScreenSetAsRootPostfix)));
         }
 
@@ -92,7 +90,7 @@ namespace Bannerlord.Harmony
                 // will be able to initialize the chat system we use to log info.
                 CheckLoadOrder();
                 Harmony.Unpatch(
-                    AccessTools.Method(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
+                    AccessTools2.Method("TaleWorlds.MountAndBlade.MBSubModuleBase:OnBeforeInitialModuleScreenSetAsRoot"),
                     HarmonyPatchType.All,
                     Harmony.Id);
             }
@@ -114,59 +112,40 @@ namespace Bannerlord.Harmony
 
         private static void LoadHarmony()
         {
-            var binSubFolder = string.IsNullOrWhiteSpace(Common.ConfigName) ? "Win64_Shipping_Client" : Common.ConfigName;
-            var providedHarmonyLocation = Path.Combine(Utilities.GetBasePath(), "Modules", "Bannerlord.Harmony", "bin", binSubFolder, "0Harmony.dll");
+            var harmonyType = typeof(HarmonyMethod);
 
-            if (!File.Exists(providedHarmonyLocation))
+            var requiredHarmonyVersion = typeof(SubModule).Assembly.GetCustomAttribute<HarmonyVersionAttribute>();
+            var currentexistingHarmony = harmonyType.Assembly;
+            var currentHarmonyName = currentexistingHarmony.GetName();
+
+            var sb = new StringBuilder();
+            var harmonyModule = ModuleInfoHelper.GetModuleByType(harmonyType);
+            if (harmonyModule is null)
             {
-                Task.Run(() => MessageBox.Show(TextObjectHelper.Create(SErrorHarmonyLibNotFound)?.ToString() ?? "ERROR",
+                if (sb.Length != 0) sb.AppendLine();
+                var textObject = TextObjectHelper.Create(SErrorHarmonyLoadedFromAnotherPlace);
+                textObject?.SetTextVariable2("LOCATION", TextObjectHelper.Create(string.IsNullOrEmpty(currentexistingHarmony.Location) ? string.Empty : Path.GetFullPath(currentexistingHarmony.Location)));
+                textObject?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
+                textObject?.SetTextVariable2("NL", Environment.NewLine);
+                sb.AppendLine(textObject?.ToString() ?? "ERROR");
+            }
+
+            if (requiredHarmonyVersion.Version.CompareTo(currentHarmonyName.Version) != 0)
+            {
+                if (sb.Length != 0) sb.AppendLine();
+                var textObject = TextObjectHelper.Create(SErrorHarmonyWrongVersion);
+                textObject?.SetTextVariable2("P_VERSION", TextObjectHelper.Create(requiredHarmonyVersion.Version.ToString()));
+                textObject?.SetTextVariable2("E_VERSION", TextObjectHelper.Create(currentHarmonyName.Version.ToString()));
+                textObject?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
+                textObject?.SetTextVariable2("NL", Environment.NewLine);
+                sb.AppendLine(textObject?.ToString() ?? "ERROR");
+            }
+
+            if (sb.Length > 0)
+            {
+                Task.Run(() => MessageBox.Show(sb.ToString(),
                     TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, (MessageBoxOptions) 0x40000));
-                return;
-            }
-
-            var providedHarmony = AssemblyName.GetAssemblyName(providedHarmonyLocation);
-
-            var existingHarmony = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(a => !a.IsDynamic && !string.IsNullOrEmpty(a.Location))
-                .FirstOrDefault(a => Path.GetFileName(a.Location) == "0Harmony.dll");
-            if (existingHarmony is not null)
-            {
-                var existingHarmonyName = existingHarmony.GetName();
-                var sb = new StringBuilder();
-
-                if (string.IsNullOrEmpty(existingHarmony.Location) || Path.GetFullPath(providedHarmonyLocation) != Path.GetFullPath(existingHarmony.Location))
-                {
-                    if (sb.Length != 0) sb.AppendLine();
-                    var textObject = TextObjectHelper.Create(SErrorHarmonyLoadedFromAnotherPlace);
-                    textObject?.SetTextVariable2("LOCATION", TextObjectHelper.Create(string.IsNullOrEmpty(existingHarmony.Location) ? string.Empty : Path.GetFullPath(existingHarmony.Location)));
-                    textObject?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
-                    textObject?.SetTextVariable2("NL", Environment.NewLine);
-                    sb.AppendLine(textObject?.ToString() ?? "ERROR");
-                }
-
-                if (providedHarmony.Version != existingHarmonyName.Version)
-                {
-                    if (sb.Length != 0) sb.AppendLine();
-                    var textObject = TextObjectHelper.Create(SErrorHarmonyWrongVersion);
-                    textObject?.SetTextVariable2("P_VERSION", TextObjectHelper.Create(providedHarmony.Version.ToString()));
-                    textObject?.SetTextVariable2("E_VERSION", TextObjectHelper.Create(existingHarmonyName.Version.ToString()));
-                    textObject?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
-                    textObject?.SetTextVariable2("NL", Environment.NewLine);
-                    sb.AppendLine(textObject?.ToString() ?? "ERROR");
-                }
-
-                if (sb.Length > 0)
-                {
-                    Task.Run(() => MessageBox.Show(sb.ToString(),
-                        TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, (MessageBoxOptions) 0x40000));
-                }
-            }
-            else
-            {
-                // We shouldn't hit this place.
-                AppDomain.CurrentDomain.Load(providedHarmony);
             }
         }
     }
