@@ -47,7 +47,7 @@ namespace Bannerlord.Harmony
         {
             base.OnSubModuleLoad();
 
-            LoadHarmony();
+            ValidateHarmony();
 
             if (ApplicationVersionHelper.GameVersion() is { } gameVersion)
             {
@@ -88,7 +88,7 @@ namespace Bannerlord.Harmony
             {
                 // OnBeforeInitialModuleScreenSetAsRoot will be called before the Native modules
                 // will be able to initialize the chat system we use to log info.
-                CheckLoadOrder();
+                ValidateLoadOrder();
                 Harmony.Unpatch(
                     AccessTools2.Method("TaleWorlds.MountAndBlade.MBSubModuleBase:OnBeforeInitialModuleScreenSetAsRoot"),
                     HarmonyPatchType.All,
@@ -96,7 +96,7 @@ namespace Bannerlord.Harmony
             }
         }
 
-        private static void CheckLoadOrder()
+        private static void ValidateLoadOrder()
         {
             var loadedModules = ModuleInfoHelper.GetLoadedModules().ToList();
             var harmonyModule = loadedModules.SingleOrDefault(x => x.Id == "Bannerlord.Harmony");
@@ -110,7 +110,7 @@ namespace Bannerlord.Harmony
             }
         }
 
-        private static void LoadHarmony()
+        private static void ValidateHarmony()
         {
             var harmonyType = typeof(HarmonyMethod);
 
