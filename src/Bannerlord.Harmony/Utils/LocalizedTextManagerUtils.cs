@@ -5,10 +5,6 @@ using HarmonyLib.BUTR.Extensions;
 using System.IO;
 using System.Xml;
 
-using TaleWorlds.Engine;
-
-using Path = System.IO.Path;
-
 namespace Bannerlord.Harmony.Utils
 {
     internal static class LocalizedTextManagerUtils
@@ -23,18 +19,16 @@ namespace Bannerlord.Harmony.Utils
 
         public static void LoadLanguageData()
         {
-            if (LoadXmlFile is null || LoadFromXml is null) return;
+            if (LoadXmlFile is null || LoadFromXml is null)
+                return;
 
-            var moduleInfo = ModuleInfoHelper.GetModuleByType(typeof(LocalizedTextManagerUtils));
-            if (moduleInfo is null) return;
+            if (ModuleInfoHelper.GetModulePath(typeof(LocalizedTextManagerUtils)) is not { } modulePath || !Directory.Exists(modulePath))
+                return;
 
-            var path = Path.Combine(Utilities.GetBasePath(), "Modules", moduleInfo.Id, "ModuleData", "Languages");
-            if (!Directory.Exists(path)) return;
-
-            foreach (var file in Directory.GetFiles(path, "language_data._xml", SearchOption.AllDirectories))
+            foreach (var file in Directory.GetFiles(modulePath, "language_data._xml", SearchOption.AllDirectories))
             {
                 if (LoadXmlFile(file) is { } xmlDocument)
-                    LoadFromXml(xmlDocument, path);
+                    LoadFromXml(xmlDocument, modulePath);
             }
         }
     }
