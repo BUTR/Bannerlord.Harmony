@@ -41,64 +41,41 @@ jobs:
         path: ./bannerlord/
 
 ###########################
-#          NEXUS          #
+#          STEAM          #
 ###########################
-  publish-on-nexusmods:
-    name: Publish on NexusMods
-    needs: ["build-module"]
+  publish-on-steam:
+    name: Publish on Steam
     runs-on: ubuntu-latest
-    if: ${{false}}
+    needs: ["build-module"]
     steps:
     - name: Setup
       uses: butr/actions-common-setup@v2.0
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
-
+    
     - name: Download bannerlord folder
       uses: actions/download-artifact@v3
       with:
         name: bannerlord
         path: ./bannerlord
-
-    - name: Zip Bannerlord.Harmony
-      run: 7z a -t7z Bannerlord.Harmony.7z ./bannerlord/* -mx9
-      #shell: pwsh
-      # pwsh casues it to include the root folder
-
-    - name: Install Bannerlord.NexusmodsUploader
-      run: >-
-        dotnet tool install -g Bannerlord.NexusmodsUploader;
-      shell: pwsh
-
+    
     - name: Get Bannerlord.Harmony version
       id: version
       run: >-
         $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion.Split("+")[0];
         echo "::set-output name=mod_version::$vers"
       shell: pwsh
-
-    - name: Start Selenoid
-      uses: Xotabu4/selenoid-github-action@v1
-
-    - name: Run NexusmodsUploader
-      run: >-
-        bannerlord_nexusmods_uploader upload -g mountandblade2bannerlord -m 2006 -n "Harmony"
-        -v "v${{steps.version.outputs.mod_version}}" -l true -e true -d ""
-        -p "$PWD/Bannerlord.Harmony.7z";
-      env:
-        NEXUSMODS_COOKIES_JSON: '${{secrets.NEXUSMODS_COOKIES_JSON}}'
-      shell: pwsh
-
-    - name: Password protect Screenshots
-      run: 7z a -p${{secrets.SCREENSHOTS_PASSWORD}} Screenshots.7z ./Screenshots/*
-      shell: pwsh
-
-    - name: Upload Screenshots Artifact
-      uses: actions/upload-artifact@v3
+    
+    - uses: AnarkisGaming/workshop@v1
       with:
-        name: Screenshots
-        path: Screenshots.7z
-
+        appID: 261550
+        publishedFileID: 2859188632
+        path: ./bannerlord
+        changelog: Release ${{steps.version.outputs.mod_version}}
+      env:
+        STEAM_ACCOUNT_NAME: ${{secrets.STEAM_LOGIN}}
+        STEAM_PASSWORD: ${{secrets.STEAM_PASSWORD}}
+    
 ###########################
 #         GITHUB          #
 ###########################
