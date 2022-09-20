@@ -9,6 +9,7 @@ on:
       - 'src/Bannerlord.Harmony/**'
   repository_dispatch:
     types: publish
+  workflow_dispatch:
 
 env:
   # Disable the .NET logo in the console output.
