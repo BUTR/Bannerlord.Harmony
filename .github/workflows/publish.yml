@@ -23,6 +23,8 @@ jobs:
   build-module:
     name: Build for NexusMods
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.version.outputs.mod_version }}
     steps:
     - name: Setup
       uses: butr/actions-common-setup@v2.0
@@ -33,6 +35,13 @@ jobs:
       run: >-
         mkdir bannerlord;
         dotnet build src/Bannerlord.Harmony/Bannerlord.Harmony.csproj --configuration Release -p:GameFolder="$PWD/bannerlord";
+      shell: pwsh
+
+    - name: Set Bannerlord.Harmony version
+      id: version
+      run: >-
+        $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion.Split("+")[0];
+        echo "::set-output name=mod_version::$vers"
       shell: pwsh
 
     - name: Upload Bannerlord folder
@@ -77,27 +86,14 @@ jobs:
       env:
         STEAM_ACCOUNT_NAME: ${{secrets.STEAM_LOGIN}}
         STEAM_PASSWORD: ${{secrets.STEAM_PASSWORD}}
-    
-  get-version-description:
-    needs: ["build-module"]
-    runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.version.outputs.mod_version }}
-    steps:
-    - name: Get Bannerlord.Harmony version
-      id: version
-      run: >-
-        $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion.Split("+")[0];
-        echo "::set-output name=mod_version::$vers"
-      shell: pwsh
 
 ###########################
 #         GITHUB          #
 ###########################
   publish-on-github:
-    needs: ["get-version-description"]
+    needs: ["build-module"]
     uses: BUTR/workflows/.github/workflows/release-github.yml@master
     with:
       mod_id: Bannerlord.Harmony
-      mod_version: ${{ needs.get-version-description.outputs.mod_version }}
+      mod_version: ${{ needs.build-module.outputs.mod_version }}
       artifact_name: bannerlord
