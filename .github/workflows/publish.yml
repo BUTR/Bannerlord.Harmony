@@ -78,11 +78,26 @@ jobs:
         STEAM_ACCOUNT_NAME: ${{secrets.STEAM_LOGIN}}
         STEAM_PASSWORD: ${{secrets.STEAM_PASSWORD}}
     
+  get-version-description:
+    needs: ["build-module"]
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.version.outputs.mod_version }}
+    steps:
+    - name: Get Bannerlord.Harmony version
+      id: version
+      run: >-
+        $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion.Split("+")[0];
+        echo "::set-output name=mod_version::$vers"
+      shell: pwsh
+
 ###########################
 #         GITHUB          #
 ###########################
   publish-on-github:
-    needs: ["build-module"]
+    needs: ["get-version-description"]
     uses: BUTR/workflows/.github/workflows/release-github.yml@master
-    secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      mod_id: Bannerlord.Harmony
+      mod_version: ${{ needs.get-version-description.outputs.mod_version }}
+      artifact_name: bannerlord
