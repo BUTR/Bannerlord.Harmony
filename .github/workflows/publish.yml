@@ -24,7 +24,7 @@ jobs:
     name: Build for NexusMods
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.version.outputs.mod_version }}
+      mod_version: ${{ steps.version.outputs.mod_version }}
     steps:
     - name: Setup
       uses: butr/actions-common-setup@v2.0
