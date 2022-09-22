@@ -96,4 +96,5 @@ jobs:
     with:
       mod_id: Bannerlord.Harmony
       mod_version: ${{ needs.build-module.outputs.mod_version }}
+      mod_description: Release v${{ needs.build-module.outputs.mod_version }}
       artifact_name: bannerlord
