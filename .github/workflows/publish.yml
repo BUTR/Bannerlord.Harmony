@@ -59,6 +59,10 @@ jobs:
     with:
       mod_description: Release v${{ needs.build-module.outputs.mod_version }}
       artifact_name: bannerlord
+    secrets:
+      STEAM_WORKSHOP_LOGIN: ${{ secrets.STEAM_WORKSHOP_LOGIN }}
+      STEAM_WORKSHOP_PASSWORD: ${{ secrets.STEAM_WORKSHOP_PASSWORD }}
+      STEAM_WORKSHOP_AUTH_CODE: ${{ secrets.STEAM_WORKSHOP_AUTH_CODE }}
 
 ###########################
 #         GITHUB          #
