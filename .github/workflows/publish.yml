@@ -12,8 +12,6 @@ on:
   workflow_dispatch:
 
 env:
-  MODULE_ID: Bannerlord.Harmony
-  ARTIFACT_NAME: bannerlord
   # Disable the .NET logo in the console output.
   DOTNET_NOLOGO: true
   # Disable the .NET first time experience to skip caching NuGet packages and speed up the build.
@@ -49,7 +47,7 @@ jobs:
     - name: Upload Bannerlord folder
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.ARTIFACT_NAME }}
+        name: bannerlord
         path: ./bannerlord/
 
 ###########################
@@ -60,9 +58,9 @@ jobs:
     uses: BUTR/workflows/.github/workflows/release-steam.yml@master
     with:
       workshop_id: 2859188632
-      mod_id: ${{ env.MODULE_ID }}
+      mod_id: Bannerlord.Harmony
       mod_description: Release v${{ needs.build-module.outputs.mod_version }}
-      artifact_name: ${{ env.ARTIFACT_NAME }}
+      artifact_name: bannerlord
     secrets:
       STEAM_LOGIN: ${{ secrets.STEAM_WORKSHOP_LOGIN }}
       STEAM_PASSWORD: ${{ secrets.STEAM_WORKSHOP_PASSWORD }}
@@ -75,7 +73,7 @@ jobs:
     needs: ["build-module"]
     uses: BUTR/workflows/.github/workflows/release-github.yml@master
     with:
-      mod_id: ${{ env.MODULE_ID }}
+      mod_id: Bannerlord.Harmony
       mod_version: ${{ needs.build-module.outputs.mod_version }}
       mod_description: Release v${{ needs.build-module.outputs.mod_version }}
-      artifact_name: ${{ env.ARTIFACT_NAME }}
+      artifact_name: bannerlord
