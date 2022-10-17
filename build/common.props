@@ -12,7 +12,7 @@
     <BuildResourcesVersion>1.0.1.68</BuildResourcesVersion>
     <BUTRAnalyzerVersion>1.0.1.12</BUTRAnalyzerVersion>
     <BUTRSharedVersion>2.0.0.101</BUTRSharedVersion>
-    <BUTRModuleManagerVersion>4.0.146</BUTRModuleManagerVersion>
+    <BUTRModuleManagerVersion>4.0.147</BUTRModuleManagerVersion>
     <!--Current Bannerlord Version-->
     <GameVersion>1.1.0</GameVersion>
     <!--Bannerlord's Root Folder. Leave empty if you want it to be tried to be autoresolved.-->
