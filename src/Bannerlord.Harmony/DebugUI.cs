@@ -18,10 +18,10 @@ namespace Bannerlord.Harmony
     {
         private record HarmonyPatches
         {
-            public ICollection<Patch> Prefixes { get; init; } = new List<Patch>();
-            public ICollection<Patch> Postfixes { get; init; } = new List<Patch>();
-            public ICollection<Patch> Transpilers { get; init; } = new List<Patch>();
-            public ICollection<Patch> Finalizers { get; init; } = new List<Patch>();
+            public ICollection<Patch> Prefixes { get; } = new List<Patch>();
+            public ICollection<Patch> Postfixes { get; } = new List<Patch>();
+            public ICollection<Patch> Transpilers { get; } = new List<Patch>();
+            public ICollection<Patch> Finalizers { get; } = new List<Patch>();
         }
 
         private static readonly string _windowTitle = "Harmony Debug UI";

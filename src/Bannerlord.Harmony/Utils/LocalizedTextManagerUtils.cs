@@ -7,6 +7,9 @@ using System.Xml;
 
 namespace Bannerlord.Harmony.Utils
 {
+    /// <summary>
+    /// Compatibility shim for loading language data in old and new way
+    /// </summary>
     internal static class LocalizedTextManagerUtils
     {
         private delegate XmlDocument? LoadXmlFileDelegate(string path);

@@ -6,13 +6,13 @@
     <!--Module Version-->
     <Version>0.0.1.0</Version>
     <!--Harmony Version-->
-    <HarmonyExtensionsVersion>3.1.0.61</HarmonyExtensionsVersion>
+    <HarmonyExtensionsVersion>3.1.0.67</HarmonyExtensionsVersion>
     <HarmonyVersion>2.2.2.0</HarmonyVersion>
     <HarmonyAnalyzerVersion>1.0.1.44</HarmonyAnalyzerVersion>
     <BuildResourcesVersion>1.0.1.68</BuildResourcesVersion>
     <BUTRAnalyzerVersion>1.0.1.12</BUTRAnalyzerVersion>
-    <BUTRSharedVersion>2.0.0.99</BUTRSharedVersion>
-    <BUTRModuleManagerVersion>4.0.123</BUTRModuleManagerVersion>
+    <BUTRSharedVersion>2.0.0.106</BUTRSharedVersion>
+    <BUTRModuleManagerVersion>4.0.147</BUTRModuleManagerVersion>
     <!--Current Bannerlord Version-->
     <GameVersion>1.1.0</GameVersion>
     <!--Bannerlord's Root Folder. Leave empty if you want it to be tried to be autoresolved.-->
