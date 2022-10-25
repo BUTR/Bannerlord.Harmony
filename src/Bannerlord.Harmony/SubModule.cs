@@ -40,22 +40,13 @@ namespace Bannerlord.Harmony
 
         private readonly DebugUI _debugUI = new();
 
-        private static TextObject? GetExpectIssuesWarning() =>
-            TextObjectHelper.Create(SWarningExpectIssues)?.SetTextVariable2("NL", Environment.NewLine);
+        private static TextObject? GetExpectIssuesWarning() => new TextObject(SWarningExpectIssues)?.SetTextVariable("NL", Environment.NewLine);
 
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
 
             ValidateHarmony();
-
-            if (ApplicationVersionHelper.GameVersion() is { } gameVersion)
-            {
-                if (gameVersion.Major is 1 && gameVersion.Minor is 8 && gameVersion.Revision >= 0)
-                {
-                    LocalizedTextManagerHelper.LoadLanguageData(ModuleInfoHelper.GetModuleByType(typeof(SubModule)));
-                }
-            }
         }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
@@ -102,11 +93,11 @@ namespace Bannerlord.Harmony
             var harmonyModule = loadedModules.SingleOrDefault(x => x.Id == "Bannerlord.Harmony");
             var harmonyModuleIndex = harmonyModule is not null ? loadedModules.IndexOf(harmonyModule) : -1;
             if (harmonyModuleIndex == -1)
-                InformationManagerHelper.DisplayMessage(TextObjectHelper.Create(SErrorHarmonyNotFound)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED));
+                InformationManager.DisplayMessage(new InformationMessage(new TextObject(SErrorHarmonyNotFound)?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
             if (harmonyModuleIndex != 0)
             {
-                var textObject = TextObjectHelper.Create(SErrorHarmonyNotFirst)?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
-                InformationManagerHelper.DisplayMessage(textObject?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED));
+                var textObject = new TextObject(SErrorHarmonyNotFirst)?.SetTextVariable("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
+                InformationManager.DisplayMessage(new InformationMessage(textObject?.ToString() ?? "ERROR", Color.FromUint(COLOR_RED)));
             }
         }
 
@@ -123,28 +114,28 @@ namespace Bannerlord.Harmony
             if (harmonyModule is null)
             {
                 if (sb.Length != 0) sb.AppendLine();
-                var textObject = TextObjectHelper.Create(SErrorHarmonyLoadedFromAnotherPlace);
-                textObject?.SetTextVariable2("LOCATION", TextObjectHelper.Create(string.IsNullOrEmpty(currentexistingHarmony.Location) ? string.Empty : Path.GetFullPath(currentexistingHarmony.Location)));
-                textObject?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
-                textObject?.SetTextVariable2("NL", Environment.NewLine);
+                var textObject = new TextObject(SErrorHarmonyLoadedFromAnotherPlace);
+                textObject?.SetTextVariable("LOCATION", new TextObject(string.IsNullOrEmpty(currentexistingHarmony.Location) ? string.Empty : Path.GetFullPath(currentexistingHarmony.Location)));
+                textObject?.SetTextVariable("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
+                textObject?.SetTextVariable("NL", Environment.NewLine);
                 sb.AppendLine(textObject?.ToString() ?? "ERROR");
             }
 
             if (requiredHarmonyVersion.Version.CompareTo(currentHarmonyName.Version) != 0)
             {
                 if (sb.Length != 0) sb.AppendLine();
-                var textObject = TextObjectHelper.Create(SErrorHarmonyWrongVersion);
-                textObject?.SetTextVariable2("P_VERSION", TextObjectHelper.Create(requiredHarmonyVersion.Version.ToString()));
-                textObject?.SetTextVariable2("E_VERSION", TextObjectHelper.Create(currentHarmonyName.Version.ToString()));
-                textObject?.SetTextVariable2("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
-                textObject?.SetTextVariable2("NL", Environment.NewLine);
+                var textObject = new TextObject(SErrorHarmonyWrongVersion);
+                textObject?.SetTextVariable("P_VERSION", new TextObject(requiredHarmonyVersion.Version.ToString()));
+                textObject?.SetTextVariable("E_VERSION", new TextObject(currentHarmonyName.Version.ToString()));
+                textObject?.SetTextVariable("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
+                textObject?.SetTextVariable("NL", Environment.NewLine);
                 sb.AppendLine(textObject?.ToString() ?? "ERROR");
             }
 
             if (sb.Length > 0)
             {
                 Task.Run(() => MessageBox.Show(sb.ToString(),
-                    TextObjectHelper.Create(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK,
+                    new TextObject(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, (MessageBoxOptions) 0x40000));
             }
         }

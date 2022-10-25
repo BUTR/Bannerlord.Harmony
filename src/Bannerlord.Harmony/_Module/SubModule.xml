@@ -4,11 +4,9 @@
   <Id value="$moduleid$" />
   <Name value="$modulename$" />
   <Version value="v$version$" />
-  <Official value="false" />
   <DefaultModule value="false" />
-  <SingleplayerModule value="true" />
-  <MultiplayerModule value="false" />
   <ModuleCategory value="Singleplayer" />
+  <ModuleType value ="Community" />
   <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/2006" />
   <DependedModules />
   <ModulesToLoadAfterThis>
@@ -33,11 +31,7 @@
       <Name value="Harmony" />
       <DLLName value="$moduleid$.dll" />
       <SubModuleClassType value="$moduleid$.SubModule" />
-      <!-- For compatibility with Legacy versions-->
-      <Tags>
-        <Tag key="DedicatedServerType" value="none" />
-        <Tag key="IsNoRenderModeElement" value="false" />
-      </Tags>
+      <Tags/>
     </SubModule>
   </SubModules>
 </Module>
