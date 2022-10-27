@@ -24,7 +24,7 @@ jobs:
     name: Build for NexusMods
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.version.outputs.mod_version }}
+      mod_version: ${{ steps.version.outputs.mod_version }}
     steps:
     - name: Setup
       uses: butr/actions-common-setup@v2.0
@@ -54,38 +54,17 @@ jobs:
 #          STEAM          #
 ###########################
   publish-on-steam:
-    name: Publish on Steam
-    runs-on: ubuntu-latest
     needs: ["build-module"]
-    if: ${{false}}
-    steps:
-    - name: Setup
-      uses: butr/actions-common-setup@v2.0
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-    
-    - name: Download bannerlord folder
-      uses: actions/download-artifact@v3
-      with:
-        name: bannerlord
-        path: ./bannerlord
-    
-    - name: Get Bannerlord.Harmony version
-      id: version
-      run: >-
-        $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion.Split("+")[0];
-        echo "::set-output name=mod_version::$vers"
-      shell: pwsh
-    
-    - uses: AnarkisGaming/workshop@v1
-      with:
-        appID: 261550
-        publishedFileID: 2859188632
-        path: ./bannerlord
-        changelog: Release ${{steps.version.outputs.mod_version}}
-      env:
-        STEAM_ACCOUNT_NAME: ${{secrets.STEAM_LOGIN}}
-        STEAM_PASSWORD: ${{secrets.STEAM_PASSWORD}}
+    uses: BUTR/workflows/.github/workflows/release-steam.yml@master
+    with:
+      workshop_id: 2859188632
+      mod_id: Bannerlord.Harmony
+      mod_description: Release v${{ needs.build-module.outputs.mod_version }}
+      artifact_name: bannerlord
+    secrets:
+      STEAM_LOGIN: ${{ secrets.STEAM_WORKSHOP_LOGIN }}
+      STEAM_PASSWORD: ${{ secrets.STEAM_WORKSHOP_PASSWORD }}
+      STEAM_AUTH_CODE: ${{ secrets.STEAM_WORKSHOP_AUTH_CODE }}
 
 ###########################
 #         GITHUB          #
@@ -96,4 +75,5 @@ jobs:
     with:
       mod_id: Bannerlord.Harmony
       mod_version: ${{ needs.build-module.outputs.mod_version }}
+      mod_description: Release v${{ needs.build-module.outputs.mod_version }}
       artifact_name: bannerlord
