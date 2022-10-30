@@ -7,5 +7,5 @@
               subtitle_extension="ru"
               supported_iso="ru,rus,ru-ru,ru-md"
               under_development="false">
-  <LanguageFile xml_path="sta_strings.xml" />
+  <LanguageFile xml_path="RU/sta_strings.xml" />
 </LanguageData>
