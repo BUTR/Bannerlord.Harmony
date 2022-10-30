@@ -7,5 +7,5 @@
               subtitle_extension="en-GB"
               supported_iso="en-GB,en-US,en,eng,en-us,en-gb,en-au,en-bz,en-ca,en-ie,en-jm,en-nz,en-za,en-tt"
               under_development="false">
-  <LanguageFile xml_path="sta_strings.xml" />
+  <LanguageFile xml_path="EN/sta_strings.xml" />
 </LanguageData>
