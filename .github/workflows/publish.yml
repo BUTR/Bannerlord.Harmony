@@ -51,6 +51,28 @@ jobs:
         path: ./bannerlord/
 
 ###########################
+#        NEXUSMODS        #
+###########################
+  publish-on-nexusmods:
+    needs: ["build-module"]
+    uses: BUTR/workflows/.github/workflows/release-nexusmods.yml@master
+    with:
+      nexusmods_game_id: mountandblade2bannerlord
+      nexusmods_mod_id: 2006
+      mod_filename: Harmony
+      mod_version: ${{ needs.build-module.outputs.mod_version }}
+      mod_description: |
+        Works with every version past v1.0.0
+
+        * Added more info for Debug UI. Available via CTRL+ALT+H
+
+        Unpacking .7z files - https://www.nexusmods.com/mountandblade2bannerlord/articles/423
+      artifact_name: bannerlord
+    secrets:
+      NEXUSMODS_APIKEY: ${{ secrets.NEXUSMODS_APIKEY }}
+      NEXUSMODS_COOKIES: ${{ secrets.NEXUSMODS_COOKIES }}
+
+###########################
 #          STEAM          #
 ###########################
   publish-on-steam:
