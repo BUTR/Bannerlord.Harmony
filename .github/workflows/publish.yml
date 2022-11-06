@@ -1,4 +1,4 @@
-name: Publish
+name: Publish Module
 
 on:
   push:
@@ -21,7 +21,7 @@ env:
 
 jobs:
   build-module:
-    name: Build for NexusMods
+    name: Build Module
     runs-on: ubuntu-latest
     outputs:
       mod_version: ${{ steps.version.outputs.mod_version }}
