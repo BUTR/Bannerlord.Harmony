@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguage.xsd">
+  <tags>
+    <tag language="简体中文"/>
+  </tags>
+  <strings>
+    <string id="qZXqV8GzUH" text="来自 Bannerlord.Harmony 的警告！"/>
+    <string id="EEVJa5azpB" text="Bannerlord.Harmony 模组缺失！"/>
+    <string id="NxkNTUUV32" text="Bannerlord.Harmony 不是加载顺序中的第一个！{EXPECT_ISSUES_WARNING}"/>
+    <string id="Z4d2nSD38a" text="加载的 0Harmony.dll 版本错误！{NL}预期版本 {P_VERSION}，现版本 {E_VERSION}！{EXPECT_ISSUES_WARNING}"/>
+    <string id="ASjx7sqkJs" text="0Harmony.dll 是从另一个位置加载的：{LOCATION}！{NL}这可能是由非官方启动器或者其他一些MOD引起的！{EXPECT_ISSUES_WARNING}&#10;译者注：这种情况请删除你安装的古董版本的非官方启动器！并且顺着报错提示删掉这个dll文件！"/>
+    <string id="xTeLdSrXk4" text="{NL}不建议这样做。期待解决！{NL}如果你的游戏崩溃了，并且得到崩溃窗口，请及时汇报！"/>
+  </strings>
+</base>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguageData.xsd" id="Türkçe" name="Türkçe" subtitle_extension="tr-TR" supported_iso="tr,tur,tr-tr" under_development="false">
+  <LanguageFile xml_path="TR/sta_strings.xml"/>
+</LanguageData>
