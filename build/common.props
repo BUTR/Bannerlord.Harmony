@@ -11,7 +11,7 @@
     <HarmonyAnalyzerVersion>1.0.1.44</HarmonyAnalyzerVersion>
     <BuildResourcesVersion>1.0.1.87</BuildResourcesVersion>
     <BUTRAnalyzerVersion>1.0.1.12</BUTRAnalyzerVersion>
-    <BUTRSharedVersion>3.0.0.127</BUTRSharedVersion>
+    <BUTRSharedVersion>3.0.0.130</BUTRSharedVersion>
     <BUTRModuleManagerVersion>5.0.166</BUTRModuleManagerVersion>
     <!--Current Bannerlord Version-->
     <GameVersion>1.0.0</GameVersion>
