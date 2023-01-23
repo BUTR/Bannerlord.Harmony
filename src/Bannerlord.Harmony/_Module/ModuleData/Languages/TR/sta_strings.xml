@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguage.xsd">
+  <tags>
+    <tag language="İngilizce"/>
+  </tags>
+  <strings>
+    <string id="qZXqV8GzUH" text="Bannerlord.Harmony Uyarı!"/>
+    <string id="EEVJa5azpB" text="Bannerlord.Harmony modülü bulunamadı!"/>
+    <string id="NxkNTUUV32" text="{EXPECT_ISSUES_WARNING} Bannerlord.Harmony yükleme sırasında ilk sırada bulunmuyor!"/>
+    <string id="Z4d2nSD38a" text="Yüklenmiş olan 0Harmony.dll versiyonu yanlış! {NL} Olması gereken: {P_VERSION} Mevcut versiyon: {E_VERSION} {EXPECT_ISSUES_WARNING}"/>
+    <string id="ASjx7sqkJs" text="0Harmony.dll başka bir lokasyondan yüklenmiş: {LOCATION} {NL} Üçüncü taraf yükleyici veya başka bir moddan kaynaklanıyor olabilir. {EXPECT_ISSUES_WARNING}"/>
+    <string id="xTeLdSrXk4" text="{NL} Önerilmiyor. Sorunlar meydana gelebilir! {NL} Eğer oyununuz çöktükten sonra bu hatayı aldıysanız, lütfen hata raporlama kısmında bildirin."/>
+  </strings>
+</base>
