@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguageData.xsd" id="Română" name="Română" subtitle_extension="ro" supported_iso="ro,ro-RO" under_development="false">
+  <LanguageFile xml_path="RO/sta_strings.xml"/>
+</LanguageData>
