@@ -17,6 +17,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework) == 'netcoreapp3.1'">
     <BuildForWindowsStore>true</BuildForWindowsStore>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
   
   <!--Module Creation-->
