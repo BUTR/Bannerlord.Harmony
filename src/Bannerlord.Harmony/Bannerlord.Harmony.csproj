@@ -6,6 +6,8 @@
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <Platforms>x64</Platforms>
+    <BuildForWindows>true</BuildForWindows>
+    <BuildForWindowsStore>true</BuildForWindowsStore>
 
     <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
   </PropertyGroup>
@@ -38,10 +40,10 @@
       <_Parameter1>$(HarmonyVersion)</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
-  
+
   <Target Name="SetVersion" BeforeTargets="PrepareForBuild" DependsOnTargets="RunResolvePackageDependencies">
     <PropertyGroup>
-      <Version Condition="'%(PackageDefinitions.Name)'=='Lib.Harmony'">%(PackageDefinitions.Version)</Version>
+      <Version>$(HarmonyVersion)</Version>
     </PropertyGroup>
 
     <SetVersion2 VersionIn="$(Version)" VersionCI="$(GITHUB_RUN_NUMBER)">
@@ -59,10 +61,20 @@
       <Code Type="Fragment" Language="cs">
         <![CDATA[
           var version = System.Version.Parse(VersionIn);
+          var versionCI = int.Parse(VersionCI);
           if (version.Revision == -1)
+          {
             VersionOut = VersionIn + "." + VersionCI;
+          }
+          else if (version.Revision == 0)
+          {
+            version = new Version(version.Major, version.Minor, version.Build, versionCI);
+            VersionOut = version.ToString();
+          }
           else
+          {
             VersionOut = VersionIn + VersionCI;
+          }
         ]]>
       </Code>
     </Task>
