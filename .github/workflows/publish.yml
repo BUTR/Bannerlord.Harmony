@@ -34,7 +34,7 @@ jobs:
     - name: Build Bannerlord.Harmony
       run: >-
         mkdir bannerlord;
-        dotnet build src/Bannerlord.Harmony/Bannerlord.Harmony.csproj --configuration Release -p:GameFolder="$PWD/bannerlord";
+        dotnet build src/Bannerlord.Harmony/Bannerlord.Harmony.csproj --configuration Release -p:GameFolder="$PWD/bannerlord"-p:EnableWindowsTargeting=true;
       shell: pwsh
 
     - name: Set Bannerlord.Harmony version
