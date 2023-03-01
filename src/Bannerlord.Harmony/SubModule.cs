@@ -106,8 +106,8 @@ namespace Bannerlord.Harmony
             var harmonyType = typeof(HarmonyMethod);
 
             var requiredHarmonyVersion = typeof(SubModule).Assembly.GetCustomAttribute<HarmonyVersionAttribute>();
-            var currentexistingHarmony = harmonyType.Assembly;
-            var currentHarmonyName = currentexistingHarmony.GetName();
+            var currentExistingHarmony = harmonyType.Assembly;
+            var currentHarmonyName = currentExistingHarmony.GetName();
 
             var sb = new StringBuilder();
             var harmonyModule = ModuleInfoHelper.GetModuleByType(harmonyType);
@@ -115,28 +115,27 @@ namespace Bannerlord.Harmony
             {
                 if (sb.Length != 0) sb.AppendLine();
                 var textObject = new TextObject(SErrorHarmonyLoadedFromAnotherPlace);
-                textObject?.SetTextVariable("LOCATION", new TextObject(string.IsNullOrEmpty(currentexistingHarmony.Location) ? string.Empty : Path.GetFullPath(currentexistingHarmony.Location)));
-                textObject?.SetTextVariable("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
-                textObject?.SetTextVariable("NL", Environment.NewLine);
-                sb.AppendLine(textObject?.ToString() ?? "ERROR");
+                textObject.SetTextVariable("LOCATION", new TextObject(string.IsNullOrEmpty(currentExistingHarmony.Location) ? string.Empty : Path.GetFullPath(currentExistingHarmony.Location)));
+                textObject.SetTextVariable("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
+                textObject.SetTextVariable("NL", Environment.NewLine);
+                sb.AppendLine(textObject.ToString() ?? "ERROR");
             }
 
-            if (requiredHarmonyVersion.Version.CompareTo(currentHarmonyName.Version) != 0)
+            if (requiredHarmonyVersion?.Version.CompareTo(currentHarmonyName.Version) != 0)
             {
                 if (sb.Length != 0) sb.AppendLine();
                 var textObject = new TextObject(SErrorHarmonyWrongVersion);
-                textObject?.SetTextVariable("P_VERSION", new TextObject(requiredHarmonyVersion.Version.ToString()));
-                textObject?.SetTextVariable("E_VERSION", new TextObject(currentHarmonyName.Version.ToString()));
-                textObject?.SetTextVariable("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
-                textObject?.SetTextVariable("NL", Environment.NewLine);
-                sb.AppendLine(textObject?.ToString() ?? "ERROR");
+                textObject.SetTextVariable("P_VERSION", new TextObject(requiredHarmonyVersion?.Version.ToString()));
+                textObject.SetTextVariable("E_VERSION", new TextObject(currentHarmonyName.Version?.ToString()));
+                textObject.SetTextVariable("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
+                textObject.SetTextVariable("NL", Environment.NewLine);
+                sb.AppendLine(textObject.ToString() ?? "ERROR");
             }
 
             if (sb.Length > 0)
             {
                 Task.Run(() => MessageBox.Show(sb.ToString(),
-                    new TextObject(SWarningTitle)?.ToString() ?? "ERROR", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, (MessageBoxOptions) 0x40000));
+                    new TextObject(SWarningTitle).ToString() ?? "ERROR", System.Windows.Forms.MessageBoxButtons.OK));
             }
         }
     }
