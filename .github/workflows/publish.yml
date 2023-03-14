@@ -2,7 +2,6 @@ name: Publish Module
 
 on:
   push:
-    branches: [ master ]
     paths:
       - '.github/workflows/publish.yml'
       - 'build/**'
@@ -54,6 +53,7 @@ jobs:
 #        NEXUSMODS        #
 ###########################
   publish-on-nexusmods:
+    if: github.ref == 'refs/heads/master'
     needs: ["build-module"]
     uses: BUTR/workflows/.github/workflows/release-nexusmods.yml@master
     with:
@@ -76,6 +76,7 @@ jobs:
 #          STEAM          #
 ###########################
   publish-on-steam:
+    if: github.ref == 'refs/heads/master'
     needs: ["build-module"]
     uses: BUTR/workflows/.github/workflows/release-steam.yml@master
     with:
@@ -92,6 +93,7 @@ jobs:
 #         GITHUB          #
 ###########################
   publish-on-github:
+    if: github.ref == 'refs/heads/master'
     needs: ["build-module"]
     uses: BUTR/workflows/.github/workflows/release-github.yml@master
     with:
