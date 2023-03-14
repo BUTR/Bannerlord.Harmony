@@ -20,13 +20,6 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
-  
-  <!--Module Creation-->
-  <PropertyGroup>
-    <ModuleId>Bannerlord.Harmony</ModuleId>
-    <ModuleName>Harmony</ModuleName>
-  </PropertyGroup>
-  <!--Module Creation-->
 
   <!--Windows Forms-->
   <ItemGroup Condition="$(TargetFramework) == 'net472'">
@@ -36,20 +29,33 @@
     <FrameworkReference Include="Microsoft.WindowsDesktop.App" PrivateAssets="all" />
   </ItemGroup>
   <!--Windows Forms-->
+  
+  <!--Module Creation-->
+  <PropertyGroup>
+    <ModuleId>Bannerlord.Harmony</ModuleId>
+    <ModuleName>Harmony</ModuleName>
+  </PropertyGroup>
+  <!--Module Creation-->
 
   <ItemGroup>
+    <!-- TODO: Switch to harmonyX after this is merged https://github.com/BepInEx/HarmonyX/pull/68 -->
+    <!--
+    <PackageReference Include="HarmonyX" Version="$(HarmonyVersion)" />
+    -->
+    <ProjectReference Include="..\HarmonyX\Harmony\Harmony.csproj" />
+    
     <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="Bannerlord.BUTR.Analyzers" Version="$(BUTRAnalyzerVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="Bannerlord.BUTR.Shared" Version="$(BUTRSharedVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
-    <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" />
     <PackageReference Include="Bannerlord.ModuleManager.Source" Version="$(BUTRModuleManagerVersion)" />
     <PackageReference Include="Bannerlord.ReferenceAssemblies.Core" Version="$(GameVersion).*" PrivateAssets="All" />
     <PackageReference Include="Harmony.Extensions" Version="$(HarmonyExtensionsVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
   </ItemGroup>
 
   <ItemGroup>
-    <AssemblyAttribute Include="Bannerlord.Harmony.Utils.HarmonyVersionAttribute">
-      <_Parameter1>$(HarmonyVersion)</_Parameter1>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>HarmonyVersion</_Parameter1>
+      <_Parameter2>$(HarmonyVersion)</_Parameter2>
     </AssemblyAttribute>
   </ItemGroup>
 

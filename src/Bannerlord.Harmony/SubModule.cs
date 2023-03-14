@@ -1,5 +1,4 @@
 ﻿using Bannerlord.BUTR.Shared.Helpers;
-using Bannerlord.Harmony.Utils;
 
 using HarmonyLib;
 using HarmonyLib.BUTR.Extensions;
@@ -105,9 +104,13 @@ namespace Bannerlord.Harmony
         {
             var harmonyType = typeof(HarmonyMethod);
 
-            var requiredHarmonyVersion = typeof(SubModule).Assembly.GetCustomAttribute<HarmonyVersionAttribute>();
             var currentExistingHarmony = harmonyType.Assembly;
-            var currentHarmonyName = currentExistingHarmony.GetName();
+            var currentHarmonyVersion = currentExistingHarmony.GetName().Version ?? new Version(0, 0);
+            var requiredHarmonyVersion = typeof(SubModule).Assembly.GetCustomAttributes<AssemblyMetadataAttribute>().FirstOrDefault(x => x.Key == "HarmonyVersion") is { } attr
+                ? Version.TryParse(attr.Value, out  var v)
+                    ? v
+                    : new Version(0, 0)
+                : new Version(0, 0);
 
             var sb = new StringBuilder();
             var harmonyModule = ModuleInfoHelper.GetModuleByType(harmonyType);
@@ -121,12 +124,12 @@ namespace Bannerlord.Harmony
                 sb.AppendLine(textObject.ToString() ?? "ERROR");
             }
 
-            if (requiredHarmonyVersion?.Version.CompareTo(currentHarmonyName.Version) != 0)
+            if (requiredHarmonyVersion.CompareTo(currentHarmonyVersion) != 0)
             {
                 if (sb.Length != 0) sb.AppendLine();
                 var textObject = new TextObject(SErrorHarmonyWrongVersion);
-                textObject.SetTextVariable("P_VERSION", new TextObject(requiredHarmonyVersion?.Version.ToString()));
-                textObject.SetTextVariable("E_VERSION", new TextObject(currentHarmonyName.Version?.ToString()));
+                textObject.SetTextVariable("P_VERSION", new TextObject(requiredHarmonyVersion.ToString()));
+                textObject.SetTextVariable("E_VERSION", new TextObject(currentHarmonyVersion.ToString()));
                 textObject.SetTextVariable("EXPECT_ISSUES_WARNING", GetExpectIssuesWarning());
                 textObject.SetTextVariable("NL", Environment.NewLine);
                 sb.AppendLine(textObject.ToString() ?? "ERROR");

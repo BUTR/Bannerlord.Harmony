@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VersionChecker", "..\build\VersionCHecker\VersionChecker.csproj", "{7CD86F86-0C46-4695-953B-5634AF718E5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harmony", "HarmonyX\Harmony\Harmony.csproj", "{93145BF7-490C-4336-8663-FAA178CA1D20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Beta_Release|x64 = Beta_Release|x64
@@ -44,6 +46,14 @@ Global
 		{7CD86F86-0C46-4695-953B-5634AF718E5B}.Stable_Release|x64.Build.0 = Release|Any CPU
 		{7CD86F86-0C46-4695-953B-5634AF718E5B}.Beta_Debug|x64.ActiveCfg = Debug|Any CPU
 		{7CD86F86-0C46-4695-953B-5634AF718E5B}.Beta_Debug|x64.Build.0 = Debug|Any CPU
+		{93145BF7-490C-4336-8663-FAA178CA1D20}.Beta_Release|x64.ActiveCfg = Debug|Any CPU
+		{93145BF7-490C-4336-8663-FAA178CA1D20}.Beta_Release|x64.Build.0 = Debug|Any CPU
+		{93145BF7-490C-4336-8663-FAA178CA1D20}.Stable_Debug|x64.ActiveCfg = Debug|Any CPU
+		{93145BF7-490C-4336-8663-FAA178CA1D20}.Stable_Debug|x64.Build.0 = Debug|Any CPU
+		{93145BF7-490C-4336-8663-FAA178CA1D20}.Stable_Release|x64.ActiveCfg = Debug|Any CPU
+		{93145BF7-490C-4336-8663-FAA178CA1D20}.Stable_Release|x64.Build.0 = Debug|Any CPU
+		{93145BF7-490C-4336-8663-FAA178CA1D20}.Beta_Debug|x64.ActiveCfg = Debug|Any CPU
+		{93145BF7-490C-4336-8663-FAA178CA1D20}.Beta_Debug|x64.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +61,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8F7DF9CA-28B6-43DD-AD0D-12E916E8CEED} = {5958576A-D277-4419-A640-9D05524C28E8}
 		{7CD86F86-0C46-4695-953B-5634AF718E5B} = {E6508F3E-117D-4D23-A09A-FF327F5EB547}
+		{93145BF7-490C-4336-8663-FAA178CA1D20} = {5958576A-D277-4419-A640-9D05524C28E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A927FDFB-039B-41B1-99EE-3FF0D22346AA}

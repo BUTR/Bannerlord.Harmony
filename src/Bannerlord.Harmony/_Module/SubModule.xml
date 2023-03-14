@@ -31,6 +31,15 @@
       <Name value="Harmony" />
       <DLLName value="$moduleid$.dll" />
       <SubModuleClassType value="$moduleid$.SubModule" />
+      <Assemblies>
+        <Assembly value="0Harmony.dll" />
+        <Assembly value="Mono.Cecil.dll" />
+        <Assembly value="Mono.Cecil.Mdb.dll" />
+        <Assembly value="Mono.Cecil.Pdb.dll" />
+        <Assembly value="Mono.Cecil.Rocks.dll" />
+        <Assembly value="MonoMod.Utils.dll" />
+        <Assembly value="MonoMod.RuntimeDetour.dll" />
+      </Assemblies>
       <Tags/>
     </SubModule>
   </SubModules>
