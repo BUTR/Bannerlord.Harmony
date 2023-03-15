@@ -6,12 +6,12 @@
     <!--Module Version-->
     <Version>0.0.1.0</Version>
     <!--Harmony Version-->
-    <HarmonyExtensionsVersion>3.2.0.73</HarmonyExtensionsVersion>
-    <HarmonyVersion>2.2.2.0</HarmonyVersion>
+    <HarmonyExtensionsVersion>3.2.0.77</HarmonyExtensionsVersion>
+    <HarmonyVersion>2.10.1.0</HarmonyVersion>
     <HarmonyAnalyzerVersion>1.0.1.44</HarmonyAnalyzerVersion>
     <BuildResourcesVersion>1.0.1.92</BuildResourcesVersion>
     <BUTRAnalyzerVersion>1.0.1.12</BUTRAnalyzerVersion>
-    <BUTRSharedVersion>3.0.0.132</BUTRSharedVersion>
+    <BUTRSharedVersion>3.0.0.135</BUTRSharedVersion>
     <BUTRModuleManagerVersion>5.0.198</BUTRModuleManagerVersion>
     <!--Current Bannerlord Version-->
     <GameVersion>1.0.0</GameVersion>

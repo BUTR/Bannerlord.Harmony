@@ -10,6 +10,7 @@
     <BuildForWindowsStore>false</BuildForWindowsStore>
 
     <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
+    <DefineConstants>$(DefineConstants);HARMONYEXTENSIONS_HARMONYX</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) == 'net472'">
@@ -17,8 +18,18 @@
   </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework) == 'netcoreapp3.1'">
     <BuildForWindowsStore>true</BuildForWindowsStore>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
+
+  <!--Windows Forms-->
+  <ItemGroup Condition="$(TargetFramework) == 'net472'">
+    <Reference Include="System.Windows.Forms" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework) == 'netcoreapp3.1'">
+    <FrameworkReference Include="Microsoft.WindowsDesktop.App" PrivateAssets="all" />
+  </ItemGroup>
+  <!--Windows Forms-->
   
   <!--Module Creation-->
   <PropertyGroup>
@@ -27,32 +38,25 @@
   </PropertyGroup>
   <!--Module Creation-->
 
-  <!--Windows Forms-->
-  <ItemGroup Condition="$(TargetFramework) == 'net472'">
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
-  <ItemGroup Condition="$(TargetFramework) == 'netcoreapp3.1'">
-    <FrameworkReference Include="Microsoft.WindowsDesktop.App" />
-  </ItemGroup>
-  <!--Windows Forms-->
-
   <ItemGroup>
+    <!-- TODO: Switch to harmonyX after this is merged https://github.com/BepInEx/HarmonyX/pull/68 -->
+    <!--
+    <PackageReference Include="HarmonyX" Version="$(HarmonyVersion)" />
+    -->
+    <ProjectReference Include="..\HarmonyX\Harmony\Harmony.csproj" />
+    
     <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="Bannerlord.BUTR.Analyzers" Version="$(BUTRAnalyzerVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="Bannerlord.BUTR.Shared" Version="$(BUTRSharedVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="Bannerlord.ModuleManager.Source" Version="$(BUTRModuleManagerVersion)" />
     <PackageReference Include="Bannerlord.ReferenceAssemblies.Core" Version="$(GameVersion).*" PrivateAssets="All" />
     <PackageReference Include="Harmony.Extensions" Version="$(HarmonyExtensionsVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
-    <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)" GeneratePathProperty="true" />
   </ItemGroup>
 
-  <Target Name="CopyHarmonyNETCore31" Condition="$(TargetFramework) == 'netcoreapp3.1'" BeforeTargets="PostBuildEvent" AfterTargets="Build">
-    <Copy SourceFiles="$(PkgLib_Harmony)\lib\netcoreapp3.1\0Harmony.dll" DestinationFolder="$(OutDir)" />
-  </Target>
-  
   <ItemGroup>
-    <AssemblyAttribute Include="Bannerlord.Harmony.Utils.HarmonyVersionAttribute">
-      <_Parameter1>$(HarmonyVersion)</_Parameter1>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>HarmonyVersion</_Parameter1>
+      <_Parameter2>$(HarmonyVersion)</_Parameter2>
     </AssemblyAttribute>
   </ItemGroup>
 

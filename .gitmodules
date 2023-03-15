@@ -1,0 +1,4 @@
+[submodule "src/HarmonyX"]
+	path = src/HarmonyX
+	url = https://github.com/BUTR/Bannerlord.HarmonyX
+	branch = mono-cecil-forwarding
