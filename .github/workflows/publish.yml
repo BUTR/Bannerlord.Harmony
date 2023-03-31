@@ -76,7 +76,7 @@ jobs:
 #          STEAM          #
 ###########################
   publish-on-steam:
-    if: github.ref == 'refs/heads/master
+    if: github.ref == 'refs/heads/master'
     needs: ["build-module"]
     uses: BUTR/workflows/.github/workflows/release-steam.yml@master
     with:
