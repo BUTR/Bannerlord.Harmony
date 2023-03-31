@@ -6,8 +6,11 @@
     <img src="https://badges.crowdin.net/harmony/localized.svg">
   </a>
   </br>
-  <a href="https://www.nuget.org/packages/HarmonyX" alt="NuGet Harmony">
-    <img src="https://img.shields.io/nuget/v/HarmonyX.svg?label=NuGet%20HarmonyX&colorB=blue" />
+  <a href="https://www.nuget.org/packages/Lib.Harmony" alt="NuGet Harmony">
+    <img src="https://img.shields.io/nuget/v/Lib.Harmony.svg?label=NuGet%20Lib.Harmony&colorB=blue" />
+  </a>
+  <a href="https://www.nuget.org/packages/Bannerlord.Lib.Harmony" alt="NuGet Harmony">
+    <img src="https://img.shields.io/nuget/v/Bannerlord.Lib.Harmony.svg?label=NuGet%20Bannerlord.Lib.Harmony&colorB=blue" />
   </a>
   </br>
   <a href="https://www.nexusmods.com/mountandblade2bannerlord/mods/2006" alt="NexusMods Harmony">
