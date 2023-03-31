@@ -7,7 +7,7 @@
     <Version>0.0.1.0</Version>
     <!--Harmony Version-->
     <HarmonyExtensionsVersion>3.2.0.77</HarmonyExtensionsVersion>
-    <HarmonyVersion>2.2.2</HarmonyVersion>
+    <HarmonyVersion>2.2.2.0</HarmonyVersion>
     <HarmonyAnalyzerVersion>1.0.1.44</HarmonyAnalyzerVersion>
     <BuildResourcesVersion>1.0.1.92</BuildResourcesVersion>
     <BUTRAnalyzerVersion>1.0.1.12</BUTRAnalyzerVersion>
