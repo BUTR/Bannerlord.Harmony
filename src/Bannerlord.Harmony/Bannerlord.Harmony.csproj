@@ -10,7 +10,7 @@
     <BuildForWindowsStore>false</BuildForWindowsStore>
 
     <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
-    <DefineConstants>$(DefineConstants);HARMONYEXTENSIONS_HARMONYX</DefineConstants>
+    <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) == 'net472'">
@@ -43,7 +43,7 @@
     <!--
     <PackageReference Include="HarmonyX" Version="$(HarmonyVersion)" />
     -->
-    <ProjectReference Include="..\HarmonyX\Harmony\Harmony.csproj" />
+    <ProjectReference Include="..\Harmony\Harmony\Harmony.csproj" />
     
     <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="Bannerlord.BUTR.Analyzers" Version="$(BUTRAnalyzerVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
