@@ -31,32 +31,31 @@
   </br>
   <img src="https://staticdelivery.nexusmods.com/mods/3174/images/2006/2006-1615240039-1903390080.png" width="800">
 </p>
-
-Previously an unofficial distribution of the [Lib.Harmony](https://github.com/pardeike/Harmony).  
-This is an unofficial distribution of the [HarmonyX](https://github.com/BepInEx/HarmonyX) library maintained by the community to have an easier way to manage external library dependencies.  
+ 
+This is an unofficial distribution of the [Lib.Harmony](https://github.com/pardeike/Harmony) library maintained by the community to have an easier way to manage external library dependencies.  
   
 ## Installation
 This module should be the highest in loading order. Any other module that requires to be set at the top (Better Exception Window, DoubleDrawDistance, MCM, etc.) should be loaded after this mod.
   
 ## For Players
-This mod is intended to ensure that all mods in a player's modlist are using the latest version of HarmonyX to minimize conflicts.  
+This mod is intended to ensure that all mods in a player's modlist are using the latest version of Harmony to minimize conflicts.  
   
 ## For Modders
 **We added a Debug UI! Available via CTRL+ALT+H.**
 
-You still need to reference HarmonyX as a NuGet package, it is not required to include ``0Harmony.dll`` in the final /bin output of your module.  
+You still need to reference Harmony as a NuGet package, it is not required to include ``0Harmony.dll`` in the final /bin output of your module.  
 You do need to add this to your ``SubModule.xml``  
 ```xml
 <DependedModules>
     <DependedModule Id="Bannerlord.Harmony" DependentVersion="v2.10.1" />
 </DependedModules>
 ```
-This way the game will ensure that the HarmonyX library is loaded before your mod.  
+This way the game will ensure that the Harmony library is loaded before your mod.  
   
 ## Versioning  
-The Module combines the HarmonyX version used and the Build Id that published the Module. The Build Id is simply added to the end.  
-``2.0.2.22`` indicates that HarmonyX ``2.0.2.0`` is used and ``22`` is the Build Id.  
-``2.0.0.1025`` indicates that HarmonyX ``2.0.0.10`` is used and ``25`` is the Build Id.  
+The Module combines the Harmony version used and the Build Id that published the Module. The Build Id is simply added to the end.  
+``2.0.2.22`` indicates that Harmony ``2.0.2.0`` is used and ``22`` is the Build Id.  
+``2.0.0.1025`` indicates that Harmony ``2.0.0.10`` is used and ``25`` is the Build Id.  
   
 We considered using the Rimworld approach with introducing our own version system, but it won't give a clear way to detect which HarmonyX version the Module contains. It's easier for the user to report the version of the Module used than to check the assembly version/send it. 
   
