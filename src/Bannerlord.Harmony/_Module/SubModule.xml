@@ -37,8 +37,11 @@
         <Assembly value="Mono.Cecil.Mdb.dll" />
         <Assembly value="Mono.Cecil.Pdb.dll" />
         <Assembly value="Mono.Cecil.Rocks.dll" />
+        <Assembly value="MonoMod.Core.dll" />
+        <Assembly value="MonoMod.Backports.dll" />
+        <Assembly value="MonoMod.Iced.dll" />
+        <Assembly value="MonoMod.ILHelpers.dll" />
         <Assembly value="MonoMod.Utils.dll" />
-        <Assembly value="MonoMod.RuntimeDetour.dll" />
       </Assemblies>
       <Tags/>
     </SubModule>
