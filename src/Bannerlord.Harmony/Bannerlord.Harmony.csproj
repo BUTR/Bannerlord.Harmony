@@ -10,7 +10,6 @@
     <BuildForWindowsStore>false</BuildForWindowsStore>
 
     <Configurations>Stable_Debug;Stable_Release;Beta_Debug;Beta_Release</Configurations>
-    <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) == 'net472'">
@@ -39,11 +38,8 @@
   <!--Module Creation-->
 
   <ItemGroup>
-    <!-- TODO: Switch to harmonyX after this is merged https://github.com/BepInEx/HarmonyX/pull/68 -->
-    <!--
-    <PackageReference Include="HarmonyX" Version="$(HarmonyVersion)" />
-    -->
-    <ProjectReference Include="..\Harmony\Harmony\Harmony.csproj" />
+    <PackageReference Include="Lib.Harmony" Version="$(HarmonyVersion)-prerelease.2" />
+    <PackageReference Include="MonoMod.Core" Version="1.0.0" />
     
     <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="Bannerlord.BUTR.Analyzers" Version="$(BUTRAnalyzerVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
@@ -56,11 +52,16 @@
   <ItemGroup>
     <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
       <_Parameter1>HarmonyVersion</_Parameter1>
-      <_Parameter2>$(HarmonyVersion)</_Parameter2>
+      <_Parameter2>2.3.0.0</_Parameter2>
     </AssemblyAttribute>
   </ItemGroup>
 
   <Target Name="SetVersion" BeforeTargets="PrepareForBuild" DependsOnTargets="RunResolvePackageDependencies">
+    <!--
+    <PropertyGroup>
+      <Version>2.3.0-prerelease.2</Version>
+    </PropertyGroup>
+    -->
     <PropertyGroup>
       <Version>$(HarmonyVersion)</Version>
     </PropertyGroup>
