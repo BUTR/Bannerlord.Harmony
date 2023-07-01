@@ -69,8 +69,8 @@ jobs:
         Unpacking .7z files - https://www.nexusmods.com/mountandblade2bannerlord/articles/423
       artifact_name: bannerlord
     secrets:
-      NEXUSMODS_APIKEY: ${{ secrets.ARAGAS_NEXUSMOD_API_KEY }}
-      NEXUSMODS_COOKIES: ${{ secrets.ARAGAS_NEXUSMOD_COOKIES }}
+      NEXUSMODS_APIKEY: ${{ secrets.ARAGAS_NEXUSMODS_API_KEY }}
+      NEXUSMODS_COOKIES: ${{ secrets.ARAGAS_NEXUSMODS_COOKIE_SID_DEVELOP }}
 
 ###########################
 #          STEAM          #
