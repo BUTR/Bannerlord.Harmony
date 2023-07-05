@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguage.xsd">
+  <tags>
+    <tag language="日本語"/>
+  </tags>
+  <strings>
+    <string id="qZXqV8GzUH" text="Bannerlord.Harmony からの警告!"/>
+    <string id="EEVJa5azpB" text="Bannerlord.Harmony が見つかりません!"/>
+    <string id="NxkNTUUV32" text="Bannerlord.Harmony が最初にロードされていません!{EXPECT_ISSUES_WARNING}"/>
+    <string id="Z4d2nSD38a" text="読み込まれた 0Harmony.dll のバージョンが違います!{NL} 求められるバージョンは {P_VERSION} ですが, 読み込まれたのは {E_VERSION} です!{EXPECT_ISSUES_WARNING}"/>
+    <string id="ASjx7sqkJs" text="0Harmony.dll が他の場所から読み込まれました: {LOCATION}!{NL} カスタムランチャーまたは他のmodによって読み込まれた可能性があります!{EXPECT_ISSUES_WARNING}"/>
+    <string id="xTeLdSrXk4" text="{NL}これは推奨されません。不具合の発生が予想されます!{NL} もしゲームがクラッシュしこの警告が表示されているなら, バグレポートをお願いします!"/>
+  </strings>
+</base>
