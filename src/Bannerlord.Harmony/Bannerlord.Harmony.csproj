@@ -56,12 +56,8 @@
     </AssemblyAttribute>
   </ItemGroup>
 
+
   <Target Name="SetVersion" BeforeTargets="PrepareForBuild" DependsOnTargets="RunResolvePackageDependencies">
-    <!--
-    <PropertyGroup>
-      <Version>2.3.0-prerelease.2</Version>
-    </PropertyGroup>
-    -->
     <PropertyGroup>
       <Version>$(HarmonyVersion)</Version>
     </PropertyGroup>
