@@ -36,6 +36,7 @@ namespace Bannerlord.Harmony
         private const string SWarningExpectIssues = @"{=xTeLdSrXk4}{NL}This is not recommended. Expect issues!{NL}If your game crashes and you had this warning, please, mention it in the bug report!";
 
         private static readonly HarmonyRef Harmony = new("Bannerlord.Harmony.GauntletUISubModule");
+        private static readonly HarmonyRef Harmony2 = new("Bannerlord.Harmony.UnpatchAll");
 
         private readonly DebugUI _debugUI = new();
 
@@ -46,6 +47,10 @@ namespace Bannerlord.Harmony
             base.OnSubModuleLoad();
 
             ValidateHarmony();
+
+            Harmony2.Patch(
+                SymbolExtensions2.GetMethodInfo((HarmonyLib.Harmony x) => x.UnpatchAll(null)),
+                prefix: new HarmonyMethod(typeof(SubModule), nameof(UnpatchAllPrefix)));
         }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
@@ -53,7 +58,7 @@ namespace Bannerlord.Harmony
             base.OnBeforeInitialModuleScreenSetAsRoot();
 
             Harmony.Patch(
-                AccessTools2.Method("TaleWorlds.MountAndBlade.MBSubModuleBase:OnBeforeInitialModuleScreenSetAsRoot"),
+                AccessTools2.Method(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
                 postfix: new HarmonyMethod(typeof(SubModule), nameof(OnBeforeInitialModuleScreenSetAsRootPostfix)));
         }
 
@@ -80,11 +85,14 @@ namespace Bannerlord.Harmony
                 // will be able to initialize the chat system we use to log info.
                 ValidateLoadOrder();
                 Harmony.Unpatch(
-                    AccessTools2.Method("TaleWorlds.MountAndBlade.MBSubModuleBase:OnBeforeInitialModuleScreenSetAsRoot"),
+                    AccessTools2.Method(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
                     HarmonyPatchType.All,
                     Harmony.Id);
             }
         }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static bool UnpatchAllPrefix(string? harmonyID) => harmonyID is not null;
 
         private static void ValidateLoadOrder()
         {

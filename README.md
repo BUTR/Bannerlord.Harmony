@@ -29,6 +29,22 @@
     <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fnexusmods-downloads-ayuqql60xfxb.runkit.sh%2F%3Ftype%3Dviews%26gameId%3D3174%26modId%3D2006" />
   </a>
   </br>
+  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2859188632">
+    <img alt="Steam Mod Configuration Menu" src="https://img.shields.io/badge/Steam-Harmony-blue.svg" />
+  </a>
+  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2859188632">
+    <img alt="Steam Downloads" src="https://img.shields.io/steam/downloads/2859188632?label=Downloads&color=blue">
+  </a>
+  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2859188632">
+    <img alt="Steam Views" src="https://img.shields.io/steam/views/2859188632?label=Views&color=blue">
+  </a>
+  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2859188632">
+    <img alt="Steam Subscriptions" src="https://img.shields.io/steam/subscriptions/2859188632?label=Subscriptions&color=blue">
+  </a>
+  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2859188632">
+    <img alt="Steam Favorites" src="https://img.shields.io/steam/favorites/2859188632?label=Favorites&color=blue">
+  </a>
+  </br>
   <img src="https://staticdelivery.nexusmods.com/mods/3174/images/2006/2006-1615240039-1903390080.png" width="800">
 </p>
  
