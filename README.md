@@ -73,5 +73,5 @@ The Module combines the Harmony version used and the Build Id that published the
 ``2.0.2.22`` indicates that Harmony ``2.0.2.0`` is used and ``22`` is the Build Id.  
 ``2.0.0.1025`` indicates that Harmony ``2.0.0.10`` is used and ``25`` is the Build Id.  
   
-We considered using the Rimworld approach with introducing our own version system, but it won't give a clear way to detect which HarmonyX version the Module contains. It's easier for the user to report the version of the Module used than to check the assembly version/send it. 
+We considered using the Rimworld approach with introducing our own version system, but it won't give a clear way to detect which Harmony version the Module contains. It's easier for the user to report the version of the Module used than to check the assembly version/send it. 
   
