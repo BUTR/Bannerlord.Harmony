@@ -19,11 +19,11 @@
   <!-- Community Dependency Metadata -->
   <!-- https://github.com/BUTR/Bannerlord.BUTRLoader#for-modders -->
   <DependedModuleMetadatas>
-    <DependedModuleMetadata id="Native" order="LoadAfterThis" optional="true" />
-    <DependedModuleMetadata id="SandBoxCore" order="LoadAfterThis" optional="true" />
-    <DependedModuleMetadata id="Sandbox" order="LoadAfterThis" optional="true" />
-    <DependedModuleMetadata id="StoryMode" order="LoadAfterThis" optional="true" />
-    <DependedModuleMetadata id="CustomBattle" order="LoadAfterThis" optional="true" />
+    <DependedModuleMetadata id="Native" order="LoadAfterThis" version="$gameversion$.*" optional="true" />
+    <DependedModuleMetadata id="SandBoxCore" order="LoadAfterThis" version="$gameversion$.*" optional="true" />
+    <DependedModuleMetadata id="Sandbox" order="LoadAfterThis" version="$gameversion$.*" optional="true" />
+    <DependedModuleMetadata id="StoryMode" order="LoadAfterThis" version="$gameversion$.*" optional="true" />
+    <DependedModuleMetadata id="CustomBattle" order="LoadAfterThis" version="$gameversion$.*" optional="true" />
   </DependedModuleMetadatas>
   <!-- Community Dependency Metadata -->
   <SubModules>
