@@ -12,7 +12,7 @@
     <BuildResourcesVersion>1.1.0.104</BuildResourcesVersion>
     <BUTRAnalyzerVersion>1.0.1.12</BUTRAnalyzerVersion>
     <BUTRSharedVersion>3.0.0.138</BUTRSharedVersion>
-    <BUTRModuleManagerVersion>5.0.214</BUTRModuleManagerVersion>
+    <BUTRModuleManagerVersion>5.0.221</BUTRModuleManagerVersion>
     <!--Current Bannerlord Version-->
     <GameVersion>1.0.0</GameVersion>
     <GameVersionWithPrefix>v$(GameVersion)</GameVersionWithPrefix>
