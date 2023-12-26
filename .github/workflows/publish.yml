@@ -26,7 +26,7 @@ jobs:
       mod_version: ${{ steps.version.outputs.mod_version }}
     steps:
     - name: Setup
-      uses: butr/actions-common-setup@v2.1
+      uses: butr/actions-common-setup@v2
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
@@ -44,7 +44,7 @@ jobs:
       shell: pwsh
 
     - name: Upload Bannerlord folder
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: bannerlord
         path: ./bannerlord/
@@ -62,7 +62,7 @@ jobs:
       mod_filename: Harmony
       mod_version: ${{ needs.build-module.outputs.mod_version }}
       mod_description: |
-        Works with every version past v1.0.0
+        Works with every version past v1.0.0 (Steam/GOG/Epic) and past v1.2.7 (Xbox).
 
         * Added more info for Debug UI. Available via CTRL+ALT+H
 
