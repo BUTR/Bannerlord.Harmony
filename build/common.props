@@ -8,13 +8,14 @@
     <!--Harmony Version-->
     <HarmonyExtensionsVersion>3.2.0.77</HarmonyExtensionsVersion>
     <HarmonyVersion>2.3.0.0</HarmonyVersion>
-    <HarmonyAnalyzerVersion>1.0.1.44</HarmonyAnalyzerVersion>
-    <BuildResourcesVersion>1.1.0.102</BuildResourcesVersion>
+    <HarmonyAnalyzerVersion>1.0.1.50</HarmonyAnalyzerVersion>
+    <BuildResourcesVersion>1.1.0.104</BuildResourcesVersion>
     <BUTRAnalyzerVersion>1.0.1.12</BUTRAnalyzerVersion>
-    <BUTRSharedVersion>3.0.0.136</BUTRSharedVersion>
-    <BUTRModuleManagerVersion>5.0.209</BUTRModuleManagerVersion>
+    <BUTRSharedVersion>3.0.0.138</BUTRSharedVersion>
+    <BUTRModuleManagerVersion>5.0.221</BUTRModuleManagerVersion>
     <!--Current Bannerlord Version-->
     <GameVersion>1.0.0</GameVersion>
+    <GameVersionWithPrefix>v$(GameVersion)</GameVersionWithPrefix>
     <!--Bannerlord's Root Folder. Leave empty if you want it to be tried to be autoresolved.-->
     <GameFolder Condition="$(Configuration) == 'Stable_Debug' OR $(Configuration) == 'Stable_Release'">$(BANNERLORD_STABLE_DIR)</GameFolder>
     <GameFolder Condition="$(Configuration) == 'Beta_Debug' OR $(Configuration) == 'Beta_Release'">$(BANNERLORD_BETA_DIR)</GameFolder>
@@ -50,7 +51,7 @@
   </PropertyGroup>
   <!--SorceLink-->
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
   </ItemGroup>
   <!--CI Builds-->
   <ItemGroup Condition="$(TargetFramework) == 'net472' AND $(OS) != 'Windows_NT'">

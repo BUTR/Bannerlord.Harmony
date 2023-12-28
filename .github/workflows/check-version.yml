@@ -22,15 +22,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup
-      uses: butr/actions-common-setup@v2.1
+      uses: butr/actions-common-setup@v2
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
     - name: Run VersionChecker
       id: status
       run: >-
-        dotnet build ./build/VersionChecker/VersionChecker.csproj --configuration Release;
-        $status = dotnet run --project ./build/VersionChecker/VersionChecker.csproj --no-build --configuration Release;
+        dotnet tool install -g dotnet-script;
+        $status = dotnet script -v e ./build/VersionChecker.csx;
         echo "::set-env name=newer_version_status::$status";
       shell: pwsh
 
