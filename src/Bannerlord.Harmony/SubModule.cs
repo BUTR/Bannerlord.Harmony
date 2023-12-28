@@ -34,7 +34,7 @@ public class SubModule : MBSubModuleBase
     private const string SErrorHarmonyLoadedFromAnotherPlace = "{=ASjx7sqkJs}0Harmony.dll was loaded from another location: {LOCATION}!{NL}It may be caused by a custom launcher or some other mod!{EXPECT_ISSUES_WARNING}";
 
     private const string SWarningExpectIssues = "{=xTeLdSrXk4}{NL}This is not recommended. Expect issues!{NL}If your game crashes and you had this warning, please, mention it in the bug report!";
-      
+
     private const string SWarningMinVersion = "{=jhD6BVx78D}The current game version {GAME_VERSION} is not supported! Please upgrade your game to {MIN_GAME_VERSION} or higher!{EXPECT_ISSUES_WARNING}";
 
     private static readonly HarmonyRef Harmony = new("Bannerlord.Harmony.GauntletUISubModule");
@@ -62,7 +62,7 @@ public class SubModule : MBSubModuleBase
         Harmony.Patch(
             AccessTools2.Method(typeof(MBSubModuleBase), "OnBeforeInitialModuleScreenSetAsRoot"),
             postfix: new HarmonyMethod(typeof(SubModule), nameof(OnBeforeInitialModuleScreenSetAsRootPostfix)));
-            
+
         ValidateGameVersion();
     }
 
@@ -119,7 +119,7 @@ public class SubModule : MBSubModuleBase
         var currentExistingHarmony = harmonyType.Assembly;
         var currentHarmonyVersion = currentExistingHarmony.GetName().Version ?? new Version(0, 0);
         var requiredHarmonyVersion = typeof(SubModule).Assembly.GetCustomAttributes<AssemblyMetadataAttribute>().FirstOrDefault(x => x.Key == "HarmonyVersion") is { } attr
-            ? Version.TryParse(attr.Value, out  var v)
+            ? Version.TryParse(attr.Value, out var v)
                 ? v
                 : new Version(0, 0)
             : new Version(0, 0);
@@ -158,10 +158,10 @@ public class SubModule : MBSubModuleBase
     {
         if (ApplicationVersionHelper.GameVersion() is not { } gameVersion)
             return;
-            
+
         if (!ApplicationVersionHelper.TryParse("v1.0.0", out var v100Version))
             return;
-            
+
         if (!ApplicationVersionHelper.TryParse("v1.2.7", out var v127Version))
             return;
 
