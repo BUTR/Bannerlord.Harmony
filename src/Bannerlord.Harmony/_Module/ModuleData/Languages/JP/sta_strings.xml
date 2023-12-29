@@ -10,5 +10,6 @@
     <string id="Z4d2nSD38a" text="読み込まれた 0Harmony.dll のバージョンが違います!{NL} 求められるバージョンは {P_VERSION} ですが, 読み込まれたのは {E_VERSION} です!{EXPECT_ISSUES_WARNING}"/>
     <string id="ASjx7sqkJs" text="0Harmony.dll が他の場所から読み込まれました: {LOCATION}!{NL} カスタムランチャーまたは他のmodによって読み込まれた可能性があります!{EXPECT_ISSUES_WARNING}"/>
     <string id="xTeLdSrXk4" text="{NL}これは推奨されません。不具合の発生が予想されます!{NL} もしゲームがクラッシュしこの警告が表示されているなら, バグレポートをお願いします!"/>
+    <string id="jhD6BVx78D" text="現在のゲームバージョンである{GAME_VERSION}はサポートされていません。{MIN_GAME_VERSION}以降のものに更新してください。{EXPECT_ISSUES_WARNING}"/>
   </strings>
 </base>
