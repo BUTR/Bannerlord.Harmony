@@ -10,5 +10,6 @@
     <string id="Z4d2nSD38a" text="Die Datei Harmony.dll wurde nicht gefunden!"/>
     <string id="ASjx7sqkJs" text="Geladene Harmony.dll Version ist falsch!{NL}Erwartet {P_VERSION}, aber erhielt {E_VERSION}!{EXPECT_ISSUES_WARNING}"/>
     <string id="xTeLdSrXk4" text="Harmony.dll wurde von einem anderen Ort geladen: {LOCATION}!{NL}Es kann durch einen benutzerdefinierten Launcher oder einen anderen Mod verursacht werden!{EXPECT_ISSUES_WARNING}"/>
+    <string id="jhD6BVx78D" text="Die aktuelle Spielversion {GAME_VERSION} wird nicht unterstützt! Bitte aktualisieren Sie Ihr Spiel auf {MIN_GAME_VERSION} oder höher!{EXPECT_ISSUES_WARNING}"/>
   </strings>
 </base>

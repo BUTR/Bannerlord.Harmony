@@ -1,16 +1,29 @@
 {
   "profiles": {
+    "BLSE": {
+      "commandName": "Executable",
+      "executablePath": "$(GameFolder)\\bin\\$(GameConfiguration)\\Bannerlord.BLSE.Standalone.exe",
+      "commandLineArgs": "/enablecrashhandlerwhendebuggerisattached /singleplayer _MODULES_*$(ModuleId)*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*_MODULES_",
+      "workingDirectory": "$(GameFolder)\\bin\\$(GameConfiguration)"
+    },
+    "BLSEWithMCM": {
+      "commandName": "Executable",
+      "executablePath": "$(GameFolder)\\bin\\$(GameConfiguration)\\Bannerlord.BLSE.Standalone.exe",
+      "commandLineArgs": "/enablecrashhandlerwhendebuggerisattached /singleplayer _MODULES_*$(ModuleId)*Bannerlord.ButterLib*Bannerlord.UIExtenderEx*Bannerlord.MBOptionScreen*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*_MODULES_",
+      "workingDirectory": "$(GameFolder)\\bin\\$(GameConfiguration)"
+    },
+
     "Bannerlord": {
       "commandName": "Executable",
-      "executablePath": "$(GameFolder)\\bin\\Win64_Shipping_Client\\Bannerlord.exe",
+      "executablePath": "$(GameFolder)\\bin\\$(GameConfiguration)\\Bannerlord.exe",
       "commandLineArgs": "/singleplayer _MODULES_*$(ModuleId)*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*_MODULES_",
-      "workingDirectory": "$(GameFolder)\\bin\\Win64_Shipping_Client"
+      "workingDirectory": "$(GameFolder)\\bin\\$(GameConfiguration)"
     },
     "BannerlordWithMCM": {
       "commandName": "Executable",
-      "executablePath": "$(GameFolder)\\bin\\Win64_Shipping_Client\\Bannerlord.exe",
+      "executablePath": "$(GameFolder)\\bin\\$(GameConfiguration)\\Bannerlord.exe",
       "commandLineArgs": "/singleplayer _MODULES_*$(ModuleId)*Bannerlord.ButterLib*Bannerlord.UIExtenderEx*Bannerlord.MBOptionScreen*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*_MODULES_",
-      "workingDirectory": "$(GameFolder)\\bin\\Win64_Shipping_Client"
+      "workingDirectory": "$(GameFolder)\\bin\\$(GameConfiguration)"
     }
   }
 }
