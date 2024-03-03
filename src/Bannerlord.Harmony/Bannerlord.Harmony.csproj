@@ -38,7 +38,7 @@
   <!--Module Creation-->
 
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony.Thin" Version="$(HarmonyVersion).1" />
+    <PackageReference Include="Lib.Harmony.Thin" Version="$(HarmonyVersion)" />
     <PackageReference Include="MonoMod.Core" Version="1.1.0" />
     
     <PackageReference Include="Bannerlord.BuildResources" Version="$(BuildResourcesVersion)" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
@@ -52,7 +52,7 @@
   <ItemGroup>
     <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
       <_Parameter1>HarmonyVersion</_Parameter1>
-      <_Parameter2>$(HarmonyVersion).1</_Parameter2>
+      <_Parameter2>$(HarmonyVersion)</_Parameter2>
     </AssemblyAttribute>
   </ItemGroup>
 
