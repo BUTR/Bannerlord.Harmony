@@ -10,5 +10,6 @@
     <string id="Z4d2nSD38a" text="加载的 0Harmony.dll 版本错误！{NL}预期版本 {P_VERSION}，现版本 {E_VERSION}！{EXPECT_ISSUES_WARNING}"/>
     <string id="ASjx7sqkJs" text="0Harmony.dll 是从另一个位置加载的：{LOCATION}！{NL}这可能是由非官方启动器或者其他一些MOD引起的！{EXPECT_ISSUES_WARNING}&#10;译者注：这种情况请删除你安装的古董版本的非官方启动器！并且顺着报错提示删掉这个dll文件！"/>
     <string id="xTeLdSrXk4" text="{NL}不建议这样做。期待解决！{NL}如果你的游戏崩溃了，并且得到崩溃窗口，请及时汇报！"/>
+    <string id="jhD6BVx78D" text="不支持当前游戏版本{GAME_VERSION}！请升级你的游戏到至少{MIN_GAME_VERSION}版本！{EXPECT_ISSUES_WARNING}"/>
   </strings>
 </base>
