@@ -10,5 +10,6 @@
     <string id="Z4d2nSD38a" text="Используемая версия 0Harmony.dll ошибочна!{NL}Ожидается версия {P_VERSION}, но загружена {E_VERSION}!{EXPECT_ISSUES_WARNING}"/>
     <string id="ASjx7sqkJs" text="Файл 0Harmony.dll был загружен из другого места: {LOCATION}!{NL}Это может быть следствием установки специального загрузчика или мода!{EXPECT_ISSUES_WARNING}"/>
     <string id="xTeLdSrXk4" text="{NL}Это нежелательная ситуация, ожидайте проблем!{NL}Если ваша игра вылетела и вы получали данное предупреждение, пожалуйста, упомяните об этом при обращении за помощью!"/>
+    <string id="jhD6BVx78D" text="Текущая версия игры {GAME_VERSION} не поддерживается! Пожалуйста, обновите игру до {MIN_GAME_VERSION} или выше!{EXPECT_ISSUES_WARNING}"/>
   </strings>
 </base>
