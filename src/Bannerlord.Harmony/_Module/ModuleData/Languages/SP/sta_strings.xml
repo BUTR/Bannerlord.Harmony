@@ -9,7 +9,7 @@
     <string id="NxkNTUUV32" text="¡Bannerlord.Harmony no es el primero en el orden de carga!{EXPECT_ISSUES_WARNING}"/>
     <string id="Z4d2nSD38a" text="¡La versión de 0Harmony.dll está mal!{NL}Se esperaba {P_VERSION}, ¡pero se recibió {E_VERSION}!{EXPECT_ISSUES_WARNING}"/>
     <string id="ASjx7sqkJs" text="0Harmony.dll se cargó de otra localización: ¡{LOCATION}!{NL}¡Puede que haya sido causado por un lanzador personalizado u otro mod!{EXPECT_ISSUES_WARNING}"/>
-    <string id="xTeLdSrXk4" text="{NL}Esto no es recomendable. ¡Espera problemas!{NL}Si tu juego se bloquea y tuviste esta advertencia, por favor, ¡menciónalo en el reporte de errores!"/>
+    <string id="xTeLdSrXk4" text="{NL}Esto no es recomendable. ¡Espera problemas!{NL}Si tu juego colapsa y tuviste esta advertencia, por favor, ¡menciónalo en el reporte de errores!"/>
     <string id="jhD6BVx78D" text="¡La versión actual del juego {GAME_VERSION} no está soportada! Por favor, ¡actualiza tu juego a {MIN_GAME_VERSION} o superior!{EXPECT_ISSUES_WARNING}"/>
   </strings>
 </base>
