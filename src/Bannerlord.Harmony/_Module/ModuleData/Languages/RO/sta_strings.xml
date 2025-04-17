@@ -6,9 +6,10 @@
   <strings>
     <string id="qZXqV8GzUH" text="Avertizare de la Bannerlord.Harmony!"/>
     <string id="EEVJa5azpB" text="Modulul Bannerlord.Harmony nu a fost găsit!"/>
-    <string id="NxkNTUUV32" text="Modulul Bannerlord.Harmony nu este primul în ordinul de încărcare!{EXPECT_ISSUES_WARNING}"/>
+    <string id="NxkNTUUV32" text="Modulul Bannerlord.Harmony nu este primul în ordinea de încărcare!{EXPECT_ISSUES_WARNING}"/>
     <string id="Z4d2nSD38a" text="Versiunea 0Harmony.dll încărcată este greșită!{NL}Se aștepta {P_VERSION}, dar a primit {E_VERSION}!{EXPECT_ISSUES_WARNING}"/>
-    <string id="ASjx7sqkJs" text="0Harmony.dll a fost încărcat din altă locație: {LOCATION}!{NL}Poate fi cauzat de un lansator personalizat sau un alt modulul!{EXPECT_ISSUES_WARNING}"/>
-    <string id="xTeLdSrXk4" text="{NL}Acest lucru nu este recomandat. Așteptați probleme!{NL}Dacă jocul se prăbușește și ați primit acest avertisment, vă rugăm să îl menționați în raportul de erori!"/>
+    <string id="ASjx7sqkJs" text="0Harmony.dll a fost încărcat din altă locație: {LOCATION}!{NL}Poate fi cauzat de un lansator personalizat sau un alt mod!{EXPECT_ISSUES_WARNING}"/>
+    <string id="xTeLdSrXk4" text="{NL}Acest lucru nu este recomandat. Așteptați probleme!{NL}Dacă jocul se blochează și ați primit acest avertisment, vă rugăm să îl menționați în raportul de erori!"/>
+    <string id="jhD6BVx78D" text="Versiunea curentă a jocului {GAME_VERSION} nu este acceptată! Vă rugăm să vă actualizați jocul la {MIN_GAME_VERSION} sau mai mult!{EXPECT_ISSUES_WARNING}"/>
   </strings>
 </base>

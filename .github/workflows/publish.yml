@@ -70,7 +70,7 @@ jobs:
       artifact_name: bannerlord
     secrets:
       NEXUSMODS_APIKEY: ${{ secrets.ARAGAS_NEXUSMODS_API_KEY }}
-      NEXUSMODS_COOKIES: ${{ secrets.ARAGAS_NEXUSMODS_COOKIE_SID_DEVELOP }}
+      NEXUSMODS_SESSION_COOKIE: ${{ secrets.ARAGAS_NEXUSMODS_SESSION_COOKIE }}
 
 ###########################
 #          STEAM          #
