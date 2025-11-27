@@ -2,28 +2,28 @@
   "profiles": {
     "BLSE": {
       "commandName": "Executable",
-      "executablePath": "$(GameFolder)\\bin\\$(GameConfiguration)\\Bannerlord.BLSE.Standalone.exe",
+      "executablePath": "$(GameFolder)\\bin\\$(GameBinariesFolder)\\Bannerlord.BLSE.Standalone.exe",
       "commandLineArgs": "/enablecrashhandlerwhendebuggerisattached /singleplayer _MODULES_*$(ModuleId)*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*_MODULES_",
-      "workingDirectory": "$(GameFolder)\\bin\\$(GameConfiguration)"
+      "workingDirectory": "$(GameFolder)\\bin\\$(GameBinariesFolder)"
     },
     "BLSEWithMCM": {
       "commandName": "Executable",
-      "executablePath": "$(GameFolder)\\bin\\$(GameConfiguration)\\Bannerlord.BLSE.Standalone.exe",
+      "executablePath": "$(GameFolder)\\bin\\$(GameBinariesFolder)\\Bannerlord.BLSE.Standalone.exe",
       "commandLineArgs": "/enablecrashhandlerwhendebuggerisattached /singleplayer _MODULES_*$(ModuleId)*Bannerlord.ButterLib*Bannerlord.UIExtenderEx*Bannerlord.MBOptionScreen*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*_MODULES_",
-      "workingDirectory": "$(GameFolder)\\bin\\$(GameConfiguration)"
+      "workingDirectory": "$(GameFolder)\\bin\\$(GameBinariesFolder)"
     },
 
     "Bannerlord": {
       "commandName": "Executable",
-      "executablePath": "$(GameFolder)\\bin\\$(GameConfiguration)\\Bannerlord.exe",
+      "executablePath": "$(GameFolder)\\bin\\$(GameBinariesFolder)\\Bannerlord.exe",
       "commandLineArgs": "/singleplayer _MODULES_*$(ModuleId)*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*_MODULES_",
-      "workingDirectory": "$(GameFolder)\\bin\\$(GameConfiguration)"
+      "workingDirectory": "$(GameFolder)\\bin\\$(GameBinariesFolder)"
     },
     "BannerlordWithMCM": {
       "commandName": "Executable",
-      "executablePath": "$(GameFolder)\\bin\\$(GameConfiguration)\\Bannerlord.exe",
+      "executablePath": "$(GameFolder)\\bin\\$(GameBinariesFolder)\\Bannerlord.exe",
       "commandLineArgs": "/singleplayer _MODULES_*$(ModuleId)*Bannerlord.ButterLib*Bannerlord.UIExtenderEx*Bannerlord.MBOptionScreen*Native*SandBoxCore*CustomBattle*Sandbox*StoryMode*_MODULES_",
-      "workingDirectory": "$(GameFolder)\\bin\\$(GameConfiguration)"
+      "workingDirectory": "$(GameFolder)\\bin\\$(GameBinariesFolder)"
     }
   }
 }
