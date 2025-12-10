@@ -10,5 +10,6 @@
     <string id="Z4d2nSD38a" text="Yüklenmiş olan 0Harmony.dll versiyonu yanlış! {NL} Olması gereken: {P_VERSION} Mevcut versiyon: {E_VERSION} {EXPECT_ISSUES_WARNING}"/>
     <string id="ASjx7sqkJs" text="0Harmony.dll başka bir lokasyondan yüklenmiş: {LOCATION} {NL} Üçüncü taraf yükleyici veya başka bir moddan kaynaklanıyor olabilir. {EXPECT_ISSUES_WARNING}"/>
     <string id="xTeLdSrXk4" text="{NL} Önerilmiyor. Sorunlar meydana gelebilir! {NL} Eğer oyununuz çöktükten sonra bu hatayı aldıysanız, lütfen hata raporlama kısmında bildirin."/>
+    <string id="jhD6BVx78D" text="Mevcut oyun sürümü {GAME_VERSION} desteklenmiyor! Lütfen oyununuzu {MIN_GAME_VERSION} veya üstü bir sürüme yükseltin!{EXPECT_ISSUES_WARNING}"/>
   </strings>
 </base>
