@@ -74,9 +74,11 @@ We considered using the Rimworld approach with introducing our own version syste
 
 ## For Contributors
 
-If you're interested in building or contributing to this project, please see our [Contributing Guide](CONTRIBUTING.md) which includes:
-- Build instructions for local development
-- CI/CD build process documentation
+**Building BUTR Modules**: See [BUILD.md](BUILD.md) for standardized build instructions that work across all BUTR repositories (Harmony, UIExtenderEx, ButterLib, etc.).
+
+For Bannerlord.Harmony-specific contribution guidelines, see our [Contributing Guide](CONTRIBUTING.md) which includes:
+- Bannerlord.Harmony-specific development details
+- Testing procedures
+- Code review process
 - Development workflow guidelines
-- Troubleshooting tips
 

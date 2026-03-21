@@ -2,6 +2,8 @@
 
 Thank you for your interest in contributing to Bannerlord.Harmony! This document provides information on how to build, test, and contribute to this project.
 
+> **📘 Organization-Wide Build Guide**: For general BUTR module build instructions that apply across all repositories (including UIExtenderEx, ButterLib, etc.), see [BUILD.md](BUILD.md). This file contains Bannerlord.Harmony-specific details.
+
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
