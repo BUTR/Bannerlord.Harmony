@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguage.xsd">
   <tags>
-    <tag language="İngilizce"/>
+    <tag language="Türkçe"/>
   </tags>
   <strings>
     <string id="qZXqV8GzUH" text="Bannerlord.Harmony Uyarı!"/>
