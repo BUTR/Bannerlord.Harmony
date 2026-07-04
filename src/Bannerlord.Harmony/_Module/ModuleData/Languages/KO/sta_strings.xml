@@ -1,8 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
+<!-- This file is managed by Weblate; do not edit it manually - changes would be overwritten. Translate at https://weblate.butr.link -->
 <base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguage.xsd">
   <tags>
     <tag language="한국어"/>
   </tags>
   <strings>
+    <string id="qZXqV8GzUH" text=""/>
+    <string id="EEVJa5azpB" text=""/>
+    <string id="NxkNTUUV32" text=""/>
+    <string id="Z4d2nSD38a" text=""/>
+    <string id="ASjx7sqkJs" text=""/>
+    <string id="xTeLdSrXk4" text=""/>
+    <string id="jhD6BVx78D" text=""/>
   </strings>
 </base>
