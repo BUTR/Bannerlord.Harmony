@@ -3,9 +3,9 @@ name: Publish Module
 on:
   push:
     paths:
-      - '.github/workflows/publish.yml'
-      - 'build/**'
-      - 'src/Bannerlord.Harmony/**'
+      - ".github/workflows/publish.yml"
+      - "build/**"
+      - "src/Bannerlord.Harmony/**"
   repository_dispatch:
     types: publish
   workflow_dispatch:
@@ -25,35 +25,35 @@ jobs:
     outputs:
       mod_version: ${{ steps.version.outputs.mod_version }}
     steps:
-    - name: Setup
-      uses: butr/actions-common-setup@v2
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
+      - name: Setup
+        uses: butr/actions-common-setup@v2
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Build Bannerlord.Harmony
-      run: >-
-        mkdir bannerlord;
-        dotnet build src/Bannerlord.Harmony/Bannerlord.Harmony.csproj --configuration Release -p:GameFolder="$PWD/bannerlord";
-      shell: pwsh
+      - name: Build Bannerlord.Harmony
+        run: >-
+          mkdir bannerlord;
+          dotnet build src/Bannerlord.Harmony/Bannerlord.Harmony.csproj --configuration Release -p:GameFolder="$PWD/bannerlord";
+        shell: pwsh
 
-    - name: Set Bannerlord.Harmony version
-      id: version
-      run: >-
-        $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion.Split("+")[0];
-        echo "::set-output name=mod_version::$vers"
-      shell: pwsh
+      - name: Set Bannerlord.Harmony version
+        id: version
+        run: >-
+          $vers =(Get-Item './bannerlord/Modules/Bannerlord.Harmony/bin/Win64_Shipping_Client/Bannerlord.Harmony.dll').VersionInfo.ProductVersion.Split("+")[0];
+          echo "::set-output name=mod_version::$vers"
+        shell: pwsh
 
-    - name: Upload Bannerlord folder
-      uses: actions/upload-artifact@v4
-      with:
-        name: bannerlord
-        path: ./bannerlord/
+      - name: Upload Bannerlord folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: bannerlord
+          path: ./bannerlord/
 
-###########################
-#        NEXUSMODS        #
-###########################
+  ###########################
+  #        NEXUSMODS        #
+  ###########################
   publish-on-nexusmods:
-    if: false && github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     needs: ["build-module"]
     uses: BUTR/workflows/.github/workflows/release-nexusmods.yml@master
     with:
@@ -72,11 +72,11 @@ jobs:
     secrets:
       NEXUSMODS_APIKEY: ${{ secrets.ARAGAS_NEXUSMODS_API_KEY }}
 
-###########################
-#          STEAM          #
-###########################
+  ###########################
+  #          STEAM          #
+  ###########################
   publish-on-steam:
-    if: false && github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     needs: ["build-module"]
     uses: BUTR/workflows/.github/workflows/release-steam.yml@master
     with:
@@ -89,9 +89,9 @@ jobs:
       STEAM_PASSWORD: ${{ secrets.STEAM_WORKSHOP_PASSWORD }}
       STEAM_AUTH_CODE: ${{ secrets.STEAM_WORKSHOP_AUTH_CODE }}
 
-###########################
-#         GITHUB          #
-###########################
+  ###########################
+  #         GITHUB          #
+  ###########################
   publish-on-github:
     if: github.ref == 'refs/heads/master'
     needs: ["build-module"]
