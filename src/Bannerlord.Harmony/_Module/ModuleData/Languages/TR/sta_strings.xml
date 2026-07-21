@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This file is managed by Weblate; do not edit it manually - changes would be overwritten. Translate at https://translate.butr.link -->
 <base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguage.xsd">
   <tags>
-    <tag language="İngilizce"/>
+    <tag language="Türkçe"/>
   </tags>
   <strings>
     <string id="qZXqV8GzUH" text="Bannerlord.Harmony Uyarı!"/>
@@ -10,5 +11,6 @@
     <string id="Z4d2nSD38a" text="Yüklenmiş olan 0Harmony.dll versiyonu yanlış! {NL} Olması gereken: {P_VERSION} Mevcut versiyon: {E_VERSION} {EXPECT_ISSUES_WARNING}"/>
     <string id="ASjx7sqkJs" text="0Harmony.dll başka bir lokasyondan yüklenmiş: {LOCATION} {NL} Üçüncü taraf yükleyici veya başka bir moddan kaynaklanıyor olabilir. {EXPECT_ISSUES_WARNING}"/>
     <string id="xTeLdSrXk4" text="{NL} Önerilmiyor. Sorunlar meydana gelebilir! {NL} Eğer oyununuz çöktükten sonra bu hatayı aldıysanız, lütfen hata raporlama kısmında bildirin."/>
+    <string id="jhD6BVx78D" text="Mevcut oyun sürümü {GAME_VERSION} desteklenmiyor! Lütfen oyununuzu {MIN_GAME_VERSION} veya üstü bir sürüme yükseltin!{EXPECT_ISSUES_WARNING}"/>
   </strings>
 </base>

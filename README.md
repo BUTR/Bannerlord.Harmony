@@ -2,8 +2,8 @@
   <a href="https://github.com/BUTR/Bannerlord.Harmony/actions/workflows/publish.yml?query=branch%3Amaster+event%3Apush">
     <img alt="GitHub Workflow Status (event)" src="https://img.shields.io/github/actions/workflow/status/BUTR/Bannerlord.Harmony/publish.yml?branch=master&event=push&label=Latest%20Commit">
   </a>
-  <a title="Crowdin" target="_blank" href="https://crowdin.com/project/harmony">
-    <img src="https://badges.crowdin.net/harmony/localized.svg">
+  <a href="https://translate.butr.link/engage/bannerlord-harmony/">
+    <img src="https://translate.butr.link/widget/bannerlord-harmony/github/svg-badge.svg" alt="Translation status">
   </a>
   </br>
   <a href="https://www.nuget.org/packages/Lib.Harmony" alt="NuGet Harmony">
